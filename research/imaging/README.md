@@ -32,3 +32,9 @@ Some patients need no imaging, and tests may be parallel, repeated, inconclusive
 Research prototype: clinician-entered scenario, simulated/deidentified DICOM series, deterministic consistency checks, one narrow pretrained model, image/mask comparison, source-linked draft findings, verified report, traceable follow-up. Benchmarks must cover safety and usefulness, not only Dice/AUC.
 
 **Evidence rule:** Peer-reviewed publications support defined algorithms; standards/guidelines support clinical practice choices; GitHub repositories prove source availability but *not* clinical validity or weight/license suitability.
+
+## Disease-to-model mapping and reuse process
+
+- [Disease-to-modality evidence matrix](disease-modality-evidence-matrix.md): clinical target → indicated examination → screening/evidence → candidate model → gaps.
+- [Model and software integration registry](model-integration-registry.md): upstream repos, academic papers, model roles and checkpoint/license/CPU verification tasks.
+- [Fork, benchmark and integration process](model-fork-and-evaluation-process.md): how and when to fork, pin upstream code, benchmark and connect each model to this platform. **Forks have not been executed.**
