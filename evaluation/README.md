@@ -83,3 +83,7 @@ All cases are fabricated test fixtures. For actual cases, expert-adjudicated lab
 ## Full nine-stage MedGemma disease procedure
 
 [50-disease end-to-end evaluation](medgemma-end-to-end-50-diseases.md) · [JSON planner/interpreter](../scripts/medgemma_disease_pipeline.py). Generates 50 × 9 independent stage evaluations, including patient intake, imaging/other examination selection, interpretation, guideline evidence review, and follow-up. The plan does not execute a model or authorize treatment.
+
+## MedGemma technical and clinical analysis
+
+[Evidence-based MedGemma 1.5 analysis](medgemma-technical-clinical-analysis.md) reviews model-card benchmarks, modality compatibility, clinical context and examination decisions, RTX 4060 8GB inference constraints, risks and the 50-disease evaluation design. Google's published performance is distinguished from unexecuted local tests.
