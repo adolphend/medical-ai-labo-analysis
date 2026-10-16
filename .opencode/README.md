@@ -62,3 +62,7 @@ The agent is intentionally incremental. It works one condition at a time and fla
 [Dataset Pipeline Agent](agents/dataset-pipeline.md) · [Run Evaluation Command](commands/run-evaluation.md) · [Downloader](../../scripts/download_dataset.py) · [Offline test runner](../../scripts/run_evaluation_pipeline.py).
 
 Use `/run-evaluation heart-failure echonet` to run synthetic verification and design the next medically appropriate, licensed dataset/model adapter. Human approval is mandatory for real dataset acquisition. No agent may bypass credentials, infer checksum values or mark datasets approved without checking use agreements.
+
+## Reusable OpenCode skills
+
+New on-demand skills in `.opencode/skills/`: `disease-evidence`, `dataset-governance`, `model-adapter-testing`, `context-safety`, `json-procedure`, `medgemma-benchmark`. OpenCode loads matching `SKILL.md` instructions through its skill tool. See [MedGemma comparison](../evaluation/medgemma-comparison.md).
