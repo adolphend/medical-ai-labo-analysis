@@ -135,3 +135,80 @@ Mappings vary by institution and standards implementation.
 ## Limitations
 
 This is a literature-backed generic workflow, not an empirical observation of one hospital. The available evidence is not equivalent to local incidence rates, and no user interviews or site-specific timing measurements have been conducted. No proposed software is clinically validated or authorized for diagnostic care.
+
+
+---
+
+# Open-source evidence map by patient-flow stage (expanded 2026-10-16)
+
+## Interpretation and verification rules
+
+This section maps **each of the 14 stages** to directly accessible, relevant open-source material, papers, and realistic integration opportunities. Two kinds of evidence are deliberately separated:
+
+- **Clinical/workflow evidence (W):** a publication describing a clinical process, safety need or failure mode.
+- **Tool/technical evidence (T):** a peer-reviewed publication demonstrating a software platform or computational method. A tool paper is **not** evidence that this tool improves clinical outcomes.
+- **Repository (R):** accessible software source; an open repository is **not** necessarily a plug-and-play pretrained model, commercially unrestricted, maintained or approved for patient care.
+- **Feasibility** refers only to a synthetic/de-identified research prototype with no new large-model training. Hospital integration requires local validation and safety assessment.
+
+Foundational clinical evidence for the *entire diagnostic process*:
+- **W0:** National Academies of Sciences, Engineering, and Medicine, *Improving Diagnosis in Health Care* (2015), ch. 2, https://www.ncbi.nlm.nih.gov/books/NBK338593/ (expert consensus report, **not** a peer-reviewed experimental study).
+- **W1:** Callen JL et al., *Failure to Follow-Up Test Results for Ambulatory Patients: A Systematic Review*, J Gen Intern Med (2012). DOI: [10.1007/s11606-011-1949-5](https://doi.org/10.1007/s11606-011-1949-5) (systematic review, especially relevant to stages 10 and 14).
+- **W2:** Jodogne S., *The Orthanc Ecosystem for Medical Imaging*, J Digit Imaging (2018). DOI: [10.1007/s10278-018-0082-y](https://doi.org/10.1007/s10278-018-0082-y) (technical peer-reviewed paper, imaging acquisition/storage/interface).
+- **W3:** Eyre H et al., *Launching into clinical space with medspaCy: a new clinical text processing toolkit in Python*, AMIA Annu Symp Proc (2021), pp. 438–447; [paper](https://arxiv.org/abs/2106.07799) (peer-reviewed proceedings).
+
+## Stage-by-stage inventory
+
+| Stage | Open-source tools (source/launch) | Paper or research evidence | Realistic contribution without training | Caution |
+|---|---|---|---|---|
+| **1. Care-seeking / referral** | [OpenMRS](https://github.com/openmrs/openmrs-core), [patient management](https://github.com/openmrs/openmrs-esm-patient-management) | W0 (diagnosis unfolds from initial patient concerns); no stage-specific outcome paper confirmed for this exact module | Simulate referral intake and record provenance | OpenMRS is an EMR platform, not a triage AI model |
+| **2. Registration / patient ID** | [OpenMRS patient registration](https://github.com/openmrs/openmrs-esm-patient-management), [HAPI FHIR](https://github.com/hapifhir/hapi-fhir) | W0 supports maintaining reliable patient information; **no patient-ID outcome validation paper verified for these particular modules** | Duplicate-record warning using synthetic identifiers and FHIR Patient resources | Must not infer patient identity using image/LLM resemblance |
+| **3. Triage / urgency** | [OpenMRS service queues](https://github.com/openmrs/openmrs-esm-patient-management), [OpenCDS](https://www.opencds.org/) | W0 (diagnostic assessment); no verified trial of these specific triage modules | Record clinician-assigned acuity, wait times and escalation events | Do not invent automatic triage scores; no validated standalone model selected |
+| **4. History / clinical examination** | [medSpaCy](https://github.com/medspacy/medspacy), [OpenMRS](https://github.com/openmrs/openmrs-core) | **T:** Eyre et al. 2021 (W3) | Section detection, negation/uncertainty extraction from synthetic clinical notes | Extraction is not correct diagnosis; language and context validation needed |
+| **5. Test selection / ordering** | [OpenCDS](https://www.opencds.org/), [HAPI FHIR](https://github.com/hapifhir/hapi-fhir) | W0; clinical appropriateness standards can inform local rules but are **not model-evaluation papers** | Validate completeness of clinician-entered indication, body side, order and question | Do not automatically prescribe tests |
+| **6. Scheduling / preparation** | [OpenMRS appointments](https://github.com/openmrs/openmrs-esm-patient-management), [Orthanc](https://github.com/orthanc-server/orthanc) (imaging services) | **T:** Jodogne 2018 (W2) for imaging information-flow architecture | Simulate order-to-worklist states, missing preparatory tasks | Orthanc is an imaging archive, not a hospital appointment system |
+| **7. Acquisition (images / specimens / signals)** | [Orthanc](https://github.com/orthanc-server/orthanc), [OpenELIS Global 2](https://github.com/DIGI-UW/OpenELIS-Global-2), [WFDB Python](https://github.com/MIT-LCP/wfdb-python) | **T:** Jodogne 2018 for DICOM; [Makowski et al. 2021](https://doi.org/10.3758/s13428-020-01516-y) for physiological signals | Ingest synthetic DICOM, laboratory observations or ECG samples | Modality/specimen acquisition requires local equipment and controls |
+| **8. Technical / analytical QC** | [pydicom](https://github.com/pydicom/pydicom), [HistoQC](https://github.com/choosehappy/HistoQC), [NeuroKit2](https://github.com/neuropsychology/NeuroKit), [QuPath](https://github.com/qupath/qupath) | **T:** [Bankhead et al. 2017, QuPath](https://doi.org/10.1038/s41598-017-17204-5); [Makowski et al. 2021, NeuroKit2](https://doi.org/10.3758/s13428-020-01516-y) | DICOM tag consistency, scan quality flags, ECG filtering and repeatable signal measures | Quality thresholds require modality-specific clinical evidence; these publications do not validate every proposed QC rule |
+| **9. Specialist interpretation / report** | [3D Slicer](https://github.com/Slicer/Slicer), [QuPath](https://github.com/qupath/qupath), [medSpaCy](https://github.com/medspacy/medspacy), [TotalSegmentator](https://github.com/wasserth/TotalSegmentator) | **T:** [Fedorov et al. 2012](https://doi.org/10.1016/j.mri.2012.05.001); [Bankhead et al. 2017](https://doi.org/10.1038/s41598-017-17204-5); [Wasserthal et al. 2023](https://doi.org/10.1148/ryai.230024); W3 | Display, measurements, optional pretrained segmentation, structured-report checking | TotalSegmentator is computationally heavier and has task-dependent commercial licensing; none of these replace clinician interpretation |
+| **10. Report delivery / acknowledgement** | [HAPI FHIR](https://github.com/hapifhir/hapi-fhir), [Medplum](https://github.com/medplum/medplum), [OpenMRS](https://github.com/openmrs/openmrs-core) | **W:** Callen et al. 2012 (W1) | Build a deterministic report-delivered → acknowledged → acted-on task lifecycle | A received report is not proof of action; local accountability and escalation rules needed |
+| **11. Diagnostic synthesis** | [medSpaCy](https://github.com/medspacy/medspacy), [HAPI FHIR](https://github.com/hapifhir/hapi-fhir), [3D Slicer](https://github.com/Slicer/Slicer) for reviewing imaging measurements | W0; **T:** Eyre et al. 2021 (W3), Fedorov et al. 2012 | Aggregate reports, encounter notes and tests into provenance-linked evidence timeline | No autonomous diagnosis or unsupported causal inference |
+| **12. Management decision** | [OpenCDS](https://www.opencds.org/), [OpenMRS](https://github.com/openmrs/openmrs-core) | W0; no specific patient-outcome trial verified for the combined proposed workflow | Record clinician decisions and link them to evidence | Treatment recommendations are high-risk and may constitute regulated medical device software |
+| **13. Treatment / handoff / discharge** | [OpenMRS patient management](https://github.com/openmrs/openmrs-esm-patient-management), [Medplum](https://github.com/medplum/medplum) | W0; **no tool-specific outcome evidence verified** | Open/closed tasks, referrals, transitions and discharge checklist for simulated care | Integrations, consent, privacy and ownership of tasks require validation |
+| **14. Follow-up / reassessment** | [Medplum](https://github.com/medplum/medplum), [HAPI FHIR](https://github.com/hapifhir/hapi-fhir), [OpenMRS](https://github.com/openmrs/openmrs-core) | **W:** Callen et al. 2012 (W1) | Track pending investigations, acknowledgements and repeat measurements with rule-based reminders | Do not assume reminders alone improve clinical outcomes; assess alert burden and missed follow-up |
+
+### Specialty-specific open-source stacks
+
+| Diagnostic branch | Components | Peer-reviewed research | First evaluable prototype |
+|---|---|---|---|
+| **Radiology** | [Orthanc](https://github.com/orthanc-server/orthanc) + [OHIF](https://github.com/OHIF/Viewers) + [pydicom](https://github.com/pydicom/pydicom) + optionally [TotalSegmentator](https://github.com/wasserth/TotalSegmentator) | Jodogne 2018, DOI [10.1007/s10278-018-0082-y](https://doi.org/10.1007/s10278-018-0082-y); Wasserthal 2023, DOI [10.1148/ryai.230024](https://doi.org/10.1148/ryai.230024) | Deidentified study ingest, metadata QC, visualization and physician annotation; CPU-only segmentation may be slow |
+| **Pathology** | [QuPath](https://github.com/qupath/qupath) + [HistoQC](https://github.com/choosehappy/HistoQC) | Bankhead 2017, DOI [10.1038/s41598-017-17204-5](https://doi.org/10.1038/s41598-017-17204-5) | Slide QC and reproducible cell/tissue measurements on small regions |
+| **Clinical laboratory** | [OpenELIS Global 2](https://github.com/DIGI-UW/OpenELIS-Global-2) + [HAPI FHIR](https://github.com/hapifhir/hapi-fhir) | Clinical need supported by W0/W1; **no peer-reviewed outcome paper for this pairing verified in this review** | Synthetic laboratory result chain and acknowledgement monitoring |
+| **Cardiology / ECG** | [WFDB](https://github.com/MIT-LCP/wfdb-python) + [NeuroKit2](https://github.com/neuropsychology/NeuroKit) | Makowski et al. 2021, DOI [10.3758/s13428-020-01516-y](https://doi.org/10.3758/s13428-020-01516-y) | ECG lead import, signal quality and feature extraction with no deep model training |
+| **Clinical text** | [medSpaCy](https://github.com/medspacy/medspacy) + [HAPI FHIR](https://github.com/hapifhir/hapi-fhir) | Eyre et al. 2021, [publication](https://arxiv.org/abs/2106.07799) | Rule-based negation, section and uncertainty extraction, with explicit human confirmation |
+
+### Training / resource suitability
+
+- **Lightweight research components:** OpenMRS client-facing workflows (system hosting not necessarily lightweight), pydicom, medSpaCy, WFDB, NeuroKit2, FHIR parsing, rule-based completeness and state checks. No new model training needed; full enterprise platforms still demand deployment resources.
+- **Intermediate:** QuPath on selected images; 3D Slicer on small images; OHIF + Orthanc; existing pathology preprocessing. Image sizes and servers can dominate memory.
+- **Heavy:** Whole-slide analysis and 3D segmentation such as TotalSegmentator, especially on CPU. Downloadable weights remove training cost but do **not** remove inference cost.
+- **Legal/clinical suitability unresolved:** review every software, dependency, model-weight, dataset and clinical intended-use license separately. Open source does not establish approval for diagnostic use.
+
+### Evidence gaps and next validation work
+
+1. Obtain **stage-specific systematic reviews or intervention trials** on appointment no-shows, triage error, test appropriateness, specimen mislabeling, reporting communication and discharge handoffs.
+2. Confirm published clinical evaluations and exact licensing of **OpenMRS, OpenELIS Global 2, Medplum and HAPI FHIR** before claiming clinical benefit. Currently, these are included as implementation resources, **not validated outcome-improving interventions**.
+3. Inspect competing commercial products and workflow features before treating any proposed gap as unmet.
+4. Benchmark CPU RAM, latency, dataset rights and auditability on a local synthetic testbed.
+5. Prioritize a research question with measurable endpoints (false-positive alerts, missed discrepancies, task completion times) and a clinician-reviewed reference standard.
+
+### Source verification record
+
+Checked the listed project's official GitHub repository pages and the following academic publications/records on 2026-10-16:
+- Jodogne 2018: https://pmc.ncbi.nlm.nih.gov/articles/PMC5959835/
+- Bankhead et al. 2017: https://www.nature.com/articles/s41598-017-17204-5
+- Fedorov et al. 2012: https://pmc.ncbi.nlm.nih.gov/articles/PMC3466397/
+- Wasserthal et al. 2023: https://doi.org/10.1148/ryai.230024
+- Makowski et al. 2021: https://doi.org/10.3758/s13428-020-01516-y
+- Callen et al. 2012: https://pubmed.ncbi.nlm.nih.gov/22183961/
+- Eyre et al. 2021: https://arxiv.org/abs/2106.07799
+
+This is a **mapped inventory, not an exhaustive systematic review**. No tool was evaluated on local patient data, and links are not a statement of clinical fitness or unrestricted commercial use.
