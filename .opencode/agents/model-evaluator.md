@@ -30,3 +30,6 @@ Before selecting any cohort, read `evaluation/disease-dataset-catalog.json` and 
 
 ## JSON step-level evaluations
 For every model step, inspect the disease's `procedure.json`. Evaluate that step with its own reference labels, dataset version, model commit, metric and result JSON. A passing result for one model never validates another model or the overall clinical pathway. Use `scripts/interpret_procedure.py` to validate dependencies and blocked states; it is a planner rather than an inference engine.
+
+## Required clinical context validation
+Beyond binary prediction scores, use `scripts/evaluate_context.py` for context-aware structured comparison. Evaluate documented history facts, missing information, contraindications, examination-selection candidates, human review escalation and traceable evidence separately. Never infer that good binary image classification means consultation, clinical decisions or downstream management are correct. Create expert-reviewed reference JSON with appropriate human adjudication for real evaluations; synthetic fixtures only test code.
