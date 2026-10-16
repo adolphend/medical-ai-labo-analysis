@@ -32,3 +32,7 @@ git commit -m 'data: pin authorized evaluation dataset version'
 Do **not** push controlled clinical data to public storage. Commit `.dvc` metadata only after checking they contain no sensitive identifiers. Pipeline stages and simple fixtures are in [dvc.yaml](../dvc.yaml). Run `dvc repro` after installing DVC, then `dvc metrics show`. This starter pipeline uses only synthetic fixtures, not medical images.
 
 See [full methodology](protocol.md) and [dataset options](datasets.md).
+
+## Dataset governance checks
+
+[Dataset registry](dataset-registry.json) tracks dataset sources and intentionally marks every real dataset **unapproved** pending legal review. Run `python3 scripts/check_datasets.py` to validate metadata, or `python3 scripts/check_datasets.py --require-approved chexpert` to test that an unapproved dataset is blocked. After authorization, add the dataset locally using `dvc add`, and record permitted version, checksum manifest and access agreement securely. The registry status alone is not proof of rights. Run all tests with `python3 -m unittest discover -s tests -p 'test_*.py' -v`.
