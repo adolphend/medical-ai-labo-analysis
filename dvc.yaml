@@ -1,0 +1,12 @@
+stages:
+  evaluation_smoke:
+    cmd: python3 scripts/evaluate_predictions.py --truth evaluation/fixtures/truth.csv --predictions evaluation/fixtures/predictions.csv --output evaluation/results/metrics.json
+    deps:
+      - scripts/evaluate_predictions.py
+      - evaluation/fixtures/truth.csv
+      - evaluation/fixtures/predictions.csv
+    outs:
+      - evaluation/results/metrics.json:
+          cache: false
+metrics:
+  - evaluation/results/metrics.json
