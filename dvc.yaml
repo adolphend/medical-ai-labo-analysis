@@ -5,8 +5,5 @@ stages:
       - scripts/evaluate_predictions.py
       - evaluation/fixtures/truth.csv
       - evaluation/fixtures/predictions.csv
-    outs:
-      - evaluation/results/metrics.json:
-          cache: false
-metrics:
-  - evaluation/results/metrics.json
+    metrics:
+      - evaluation/results/metrics.json
