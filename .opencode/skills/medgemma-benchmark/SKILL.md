@@ -10,3 +10,6 @@ Read evaluation/medgemma-comparison.md and evaluation/protocol.md. Use Google mo
 
 ## Output
 Record inputs, citations, artifact SHA, test commands, numerical results only when actually measured, safety limitations and next unresolved checks. Never mark unexecuted tests as passed.
+
+## Registry-wide pipeline
+Use `evaluation/medgemma-50-disease-pipeline.md` and `scripts/benchmark_50_diseases.py` for the full 50-condition registry. Each of the 250 tasks has independently required model/dataset evidence, reference labels, result status and safety review. Never fabricate results or infer universal clinical utility.
