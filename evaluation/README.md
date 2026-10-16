@@ -71,3 +71,7 @@ python3 scripts/run_evaluation_pipeline.py
 ```
 
 All cases are fabricated test fixtures. For actual cases, expert-adjudicated labels, guideline concordance, source validity, context chronology, contraindication handling, clinical harm severity, confidence intervals and external-site validation are needed. Binary image-classification metrics alone cannot certify a disease procedure.
+
+## Google MedGemma comparison
+
+[MedGemma 1.5 benchmark methodology](medgemma-comparison.md) · [Paired structured-context comparator](../scripts/compare_context_models.py). The comparator accepts two existing model-output JSON files and gold labels; it does **not** execute MedGemma or assert real accuracy. Six reusable agent skills live in [OpenCode](../.opencode/README.md).
