@@ -75,3 +75,7 @@ All cases are fabricated test fixtures. For actual cases, expert-adjudicated lab
 ## Google MedGemma comparison
 
 [MedGemma 1.5 benchmark methodology](medgemma-comparison.md) · [Paired structured-context comparator](../scripts/compare_context_models.py). The comparator accepts two existing model-output JSON files and gold labels; it does **not** execute MedGemma or assert real accuracy. Six reusable agent skills live in [OpenCode](../.opencode/README.md).
+
+## 50-disease MedGemma evaluation planning
+
+[50-disease comparison pipeline](medgemma-50-disease-pipeline.md) · [Benchmark generator](../scripts/benchmark_50_diseases.py). Generates 250 planned disease/task comparisons without inventing model scores; each test requires independently approved reference data and task-compatible models.
