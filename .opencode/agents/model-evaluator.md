@@ -39,3 +39,6 @@ Use on-demand skills `dataset-governance`, `model-adapter-testing`, `context-saf
 
 ## MedGemma benchmark for the full registry
 Read `evaluation/medgemma-50-disease-pipeline.md`; execute `scripts/benchmark_50_diseases.py --output evaluation/results/medgemma-50-plan.json` to plan all 50 × 5 tasks. Work through tasks individually using approved DVC-labeled reference data, pinned models, comparable baselines and separate evaluation artifacts. Report not_tested and not_comparable distinctly. Do not report plan generation as inference or claim aggregate superiority.
+
+## Nine-stage MedGemma workflow
+Read `evaluation/medgemma-end-to-end-50-diseases.md`. Generate a research plan using `scripts/medgemma_disease_pipeline.py`. Evaluate each of the nine stages independently against appropriate adjudicated cases. Clinical management is only guideline retrieval, source reliability and human review; no automated treatment instructions or prescriptions. Never count a planned stage as a model test.
