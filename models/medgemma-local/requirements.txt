@@ -1,0 +1,6 @@
+torch
+transformers>=4.50.0,<5
+accelerate
+bitsandbytes
+huggingface_hub
+pillow
