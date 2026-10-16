@@ -36,3 +36,7 @@ See [full methodology](protocol.md) and [dataset options](datasets.md).
 ## Dataset governance checks
 
 [Dataset registry](dataset-registry.json) tracks dataset sources and intentionally marks every real dataset **unapproved** pending legal review. Run `python3 scripts/check_datasets.py` to validate metadata, or `python3 scripts/check_datasets.py --require-approved chexpert` to test that an unapproved dataset is blocked. After authorization, add the dataset locally using `dvc add`, and record permitted version, checksum manifest and access agreement securely. The registry status alone is not proof of rights. Run all tests with `python3 -m unittest discover -s tests -p 'test_*.py' -v`.
+
+## Disease-specific dataset discovery
+
+[50-disease dataset mapping](disease-dataset-mapping.md) · [Machine-readable candidate list](disease-dataset-catalog.json). The discovery catalog maps all 50 conditions to 24 candidate datasets/portals or explicitly unresolved gaps. A disease-to-dataset link is **not** an authorization, validated label match or evidence of clinical accuracy. Run `python3 scripts/check_disease_dataset_catalog.py` to check completeness; all candidates require a rights and label audit.
