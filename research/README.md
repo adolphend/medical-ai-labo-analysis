@@ -45,3 +45,7 @@
 5. Update the relevant topic file and add links in this index as the research grows.
 
 **Scope limit:** These are research workflows, not clinically approved diagnostic systems.
+
+## Expanded diagnostic AI analysis
+
+[Eight-stage diagnostic AI research](diagnostics/README.md) covers clinical conversation, examination choice, quality per modality, anatomy, disease, interpretation, screening, cross-modality synthesis, and clinician-led management. Each module is separately sourced and linked.
