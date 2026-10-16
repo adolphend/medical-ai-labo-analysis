@@ -38,3 +38,7 @@ Research prototype: clinician-entered scenario, simulated/deidentified DICOM ser
 - [Disease-to-modality evidence matrix](disease-modality-evidence-matrix.md): clinical target → indicated examination → screening/evidence → candidate model → gaps.
 - [Model and software integration registry](model-integration-registry.md): upstream repos, academic papers, model roles and checkpoint/license/CPU verification tasks.
 - [Fork, benchmark and integration process](model-fork-and-evaluation-process.md): how and when to fork, pin upstream code, benchmark and connect each model to this platform. **Forks have not been executed.**
+
+## Executable model fork agent
+
+[Model fork agent and per-model procedures](../../automation/README.md) · [Candidate manifest](../../automation/model-forks.json) · [Python automation](../../automation/fork_models.py). The automation is **preview-only unless invoked with --apply**; external forks have not been created by these documentation commits.
