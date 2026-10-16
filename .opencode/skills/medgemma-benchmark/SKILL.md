@@ -13,3 +13,6 @@ Record inputs, citations, artifact SHA, test commands, numerical results only wh
 
 ## Registry-wide pipeline
 Use `evaluation/medgemma-50-disease-pipeline.md` and `scripts/benchmark_50_diseases.py` for the full 50-condition registry. Each of the 250 tasks has independently required model/dataset evidence, reference labels, result status and safety review. Never fabricate results or infer universal clinical utility.
+
+## 8GB local MedGemma preparation
+Read `models/medgemma-local/README.md`. Confirm CUDA and dependency compatibility. Preview `models/medgemma-local/download.py` first, then require user's approval and accepted Hugging Face gated terms before any actual weight download. Run `models/medgemma-local/infer.py` only after local installation. Treat its generated text, memory and duration as a technical smoke test, never a clinical accuracy measurement. Keep weights and run artifacts out of Git.
