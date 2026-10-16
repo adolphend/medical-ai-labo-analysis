@@ -1,6 +1,8 @@
-# Medical AI Laboratory — Disease-Centered Diagnostic Research
+# Medical AI Laboratory — Clinical Tool Development
 
-**Research platform, not a medical device.** Develop, verify and compare modular open-source medical AI components from patient conversation and indicated examinations through abnormality analysis, specialist-reviewed reports, evidence-based management review and closed-loop follow-up. No autonomous clinical diagnosis, prescription or patient care.
+**Mission:** develop modular, disease-specific **clinical decision-support and diagnostic workflow tools** for eventual use by qualified healthcare professionals. The project is currently in the **research and prototype-development stage**: no component has established clinical safety, effectiveness, regulatory clearance, or authorization for routine patient care. The target product is a collection of usable clinical tools, not merely a benchmarking repository or a standalone large language model.
+
+**Intended future workflow:** clinical intake → indication and examination selection → data acquisition and QC → specialist model-assisted findings and measurements → evidence-linked draft report → clinician-reviewed diagnostic interpretation and management options → documented follow-up. Every clinical decision remains under accountable professional oversight until and unless a separately validated and appropriately authorized tool is established.
 
 ## Where to start
 
@@ -112,6 +114,27 @@ Follow-up             → deterministic task tracking and result acknowledgement
 For a concrete **cardiac ultrasound** research task, [EchoNet-Dynamic](https://github.com/echonet/dynamic) is a candidate for ejection-fraction assessment; for chest radiographs, a selected [TorchXRayVision](https://github.com/mlmed/torchxrayvision) checkpoint is an alternative. Both require actual checkpoint, licensing, accuracy and memory audits before use. **Do not combine unrelated modality models into one disease pipeline.** Use classical image analysis or a smaller approved model when a deep network is unnecessary.
 
 Evaluate any candidate against a non-AI baseline and optionally against [MedGemma](evaluation/medgemma-technical-clinical-analysis.md) *only on compatible tasks with identical independent reference cases*. The disease JSON must identify exactly which components were evaluated and where clinician approval is required.
+
+## Product development stages and clinical readiness gates
+
+| Stage | Deliverable | Exit requirement |
+|---|---|---|
+| **1. Research (current)** | Disease needs analysis, model inventory/forks, evidence and benchmark datasets, exploratory clinical workflow designs | Document precise intended use, target users/patients, risks, reference standards and repeatable evaluation |
+| **2. Engineering prototype** | Runnable end-to-end software with verified model adapters, interfaces, traceable outputs, privacy protections and secure data processing | Integration tests, role separation, logging, error handling, versioned build, reproducible performance |
+| **3. Clinical evaluation** | Locked intended-use system evaluated on representative independent clinical cases with appropriate clinician oversight | Predefined safety/performance endpoints, expert adjudication, bias and site-shift analysis, prospective study if appropriate |
+| **4. Regulatory and quality review** | Jurisdiction-specific classification, risk management, quality system, clinical evidence, security and monitoring documentation | Applicable regulatory and institutional approvals; clearance/certification when legally required |
+| **5. Controlled clinical deployment** | Clinician-facing installation, instructions, monitoring, rollback and post-deployment change control | Authorized use only, with human accountability and ongoing safety/performance monitoring |
+
+A benchmark success or a GitHub fork is **not** evidence of clinical readiness. Each tool must specify its **intended clinical purpose**, end user, care environment, eligible patients, contraindicated/missing inputs, expected clinician action, claims supported by evidence and escalation/human-review behavior. Requirements and validation are tool-specific; do not assume every tool is legally regulated in the same way.
+
+### Engineering requirements from the beginning
+
+- **Workflow usability:** clinician-oriented interfaces, explainable findings, appropriate uncertainty display, explicit draft versus signed outputs, traceable input series and follow-up ownership.
+- **Interoperability:** structured patient, encounter, imaging and report identifiers; consider DICOM/PACS for imaging and FHIR/HL7 for records as applicable.
+- **Reliability and security:** least-privilege access, encryption where appropriate, audit trails, version-controlled models, data minimization, incident handling, backups and rollback.
+- **Clinical risk controls:** define hazards such as false negatives, incorrect laterality, missing urgent findings, examination mismatch, unsafe management options, and automation bias; test mitigations.
+- **Evidence and validation:** independently assess each forked model, complete workflow and hardware/backend deployment profile; distinguish model performance from actual clinical usefulness.
+- **Development scope:** research prototypes use synthetic or appropriately authorized de-identified data. No routine real-patient diagnosis, treatment or autonomous prescription from the current repository.
 
 ## Hardware compatibility: scalable from CPU-only to large GPUs
 
