@@ -52,3 +52,7 @@ diseases/<slug>/
 ```
 
 The agent is intentionally incremental. It works one condition at a time and flags nonvalidated medical claims. It does not provide autonomous diagnosis or medical prescribing.
+
+## Evaluation and dataset pipeline agent
+
+[Model evaluator agent](agents/model-evaluator.md) · [Evaluate model command](commands/evaluate-model.md) · [Testing protocol](../evaluation/README.md) · [Dataset candidates](../evaluation/datasets.md). Use `/evaluate-model disease-slug model-id` after completing a disease's research module; begin with synthetic fixtures and DVC-tracked authorized datasets. Never mistake fixture scores for medical accuracy.
