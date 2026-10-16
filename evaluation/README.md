@@ -87,3 +87,7 @@ All cases are fabricated test fixtures. For actual cases, expert-adjudicated lab
 ## MedGemma technical and clinical analysis
 
 [Evidence-based MedGemma 1.5 analysis](medgemma-technical-clinical-analysis.md) reviews model-card benchmarks, modality compatibility, clinical context and examination decisions, RTX 4060 8GB inference constraints, risks and the 50-disease evaluation design. Google's published performance is distinguished from unexecuted local tests.
+
+## End-to-end example with actual public images
+
+[Official PneumoniaMNIST 224 image-and-label case](cases/pneumonia-medmnist/README.md) downloads a publisher-checksummed pediatric chest X-ray dataset only on explicit request, processes the held-out test split with local gated MedGemma 1.5 using a CUDA 4-bit loader, then scores case-matched predictions and abstention coverage. This is **image classification research**, not medical or treatment validation. See the [root README](../README.md) for commands and status.
