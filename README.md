@@ -39,7 +39,7 @@ python3 scripts/run_evaluation_pipeline.py
 
 The offline pipeline uses **synthetic fixtures** for code testing. It does not load model weights.
 
-### Local MedGemma on an 8 GB NVIDIA GPU
+### Optional local MedGemma on NVIDIA GPUs (8 GB development example)
 
 ```bash
 python3 models/medgemma-local/install.py --backend cuda
@@ -91,12 +91,12 @@ These are **research candidates and infrastructure**, not an approved set of cli
 4. **Test each model separately**: record exact version, weights, input/output JSON contract, reference labels, task metrics, confidence intervals where feasible, latency, peak GPU/CPU RAM, abstentions and failures.
 5. **Compare only like-for-like outputs**: classification against classification, segmentation against segmentation, measurement against reference measurement, and clinical context against adjudicated context. A Dice score cannot be compared directly with medical-text F1.
 6. **Test multi-model integration**: evaluate errors propagated between image quality, anatomy, finding detection and report generation; verify that a failed early stage cannot turn into a confident downstream diagnosis or management suggestion.
-7. **Develop a new model only for a verified gap**: start with a deterministic baseline or pretrained model; consider calibration or parameter-efficient adaptation if permitted; train from scratch only when evidence, labeled data, rights and computing resources justify it. The **8 GB RTX 4060** is the initial development constraint, not an assumed guarantee of training feasibility.
+7. **Develop a new model only for a verified gap**: start with a deterministic baseline or pretrained model; consider calibration or parameter-efficient adaptation if permitted; train from scratch only when evidence, labeled data, rights and computing resources justify it. The developer's **8 GB RTX 4060** is one reproducible benchmark target, **not** the deployment minimum, maximum, or constraint for everyone. Profile model training and inference separately for CPU-only, low-memory, mid-range and high-memory systems.
 8. **Release only research outputs with traceability**: write per-step scores/results into [disease procedure JSON](pipeline/README.md) and a model evaluation card. Human specialist verification remains mandatory before any clinical care decision; no autonomous treatment or prescription.
 
 ### Example composition: lightweight, task-specific components
 
-**Default architecture: no large language model required.** Start with small, task-specific pretrained models, deterministic rules, or manual specialist review. MedGemma is an **optional benchmark comparator**, not a mandatory stage. GPU memory (8 GB VRAM) and CPU-only deployment feasibility must be measured rather than assumed.
+**Default architecture: no large language model required.** Start with small, task-specific pretrained models, deterministic rules, or manual specialist review. MedGemma is an **optional benchmark comparator**, not a mandatory stage. Actual GPU memory, system RAM and CPU-only feasibility must be measured across hardware tiers, never assumed from the developer's machine.
 
 ```text
 Patient intake        → structured form + medSpaCy (rule-based extraction)
@@ -113,6 +113,25 @@ For a concrete **cardiac ultrasound** research task, [EchoNet-Dynamic](https://g
 
 Evaluate any candidate against a non-AI baseline and optionally against [MedGemma](evaluation/medgemma-technical-clinical-analysis.md) *only on compatible tasks with identical independent reference cases*. The disease JSON must identify exactly which components were evaluated and where clinician approval is required.
 
+## Hardware compatibility: scalable from CPU-only to large GPUs
+
+The maintainer currently has an **NVIDIA RTX 4060 with 8 GB VRAM** for development. **That is not a required GPU**: other researchers and users may have no dedicated GPU, less memory, or substantially more GPU memory and compute. The architecture must be hardware-adaptive, while acknowledging that some specialized models cannot run on every device.
+
+| Hardware profile | Model/runtime selection | Evaluation requirements |
+|---|---|---|
+| CPU only; 8 GB system RAM | Structured rules, classical algorithms, small quantized models where they fit; optionally offline manual workflows | Peak RAM, total latency, correctness, ability to complete without model installation |
+| Low-end GPU (2–6 GB VRAM) | Tiny task-specific checkpoints, reduced input size only when scientifically valid, quantization | CUDA/Metal/device compatibility, OOM rate, accuracy changes versus reference |
+| Mid-range GPU (8 GB VRAM; development RTX 4060) | Task-specific pretrained models and selected 4-bit medical-language comparators | Measured VRAM/host RAM, preprocessing and generation throughput, accuracy |
+| Larger GPU (12–24 GB VRAM) | Higher precision, larger batches, more simultaneous components, additional model candidates | Same held-out evaluation; throughput, performance and power/cost |
+| Workstation/server (24+ GB VRAM, possibly multi-GPU) | Heavy volumetric/whole-slide pipelines, expanded ensembles and training/adaptation when justified | Reproducible distributed settings, scaling gains, accuracy and resource costs |
+| Apple Silicon/macOS | Metal/MPS-compatible models and runtimes; quantization availability varies | Unified-memory peak and compatibility; do not assume CUDA/bitsandbytes |
+
+**Required architecture:** components declare minimum *tested* hardware, optional accelerators, model weight format, memory footprint, supported backend (CPU/CUDA/MPS), exact input limits and fallback behavior. A **capability detection/selection layer** chooses a compatible implementation at runtime; it must not silently substitute a medically different or unvalidated model. If no validated component fits, report `UNAVAILABLE_ON_THIS_DEVICE` and preserve manual/human-reviewed workflow instead of inventing an answer.
+
+**Benchmark policy:** compare accuracy on exactly the same authorized dataset where model inputs remain clinically equivalent. Record separate latency, throughput, peak **system RAM** and **GPU VRAM**, loading time, quantization changes, and device-specific failures for each model. Hardware speed and medical accuracy are separate criteria. Larger hardware may support additional models or higher-resolution inputs, but does **not** confer clinical validity. Models that are not compatible with CPU-only systems remain valid optional research modules, clearly marked as such.
+
+**Development vs deployment:** the initial developer GPU is one test profile, not a published minimum specification. Training hardware requirements can be greater than inference requirements. Windows, Linux/WSL and macOS have distinct backend support; provide per-platform installers and independently run smoke tests before claiming support. **Do not report untested hardware as compatible.**
+
 ## Minimum baseline: fork, test, evaluate and integrate **every** model
 
 **This baseline is mandatory for all 41 identified external repositories** (including infrastructure and model frameworks), not merely the first example or MedGemma. The [full upstream manifest](automation/model-forks.json) records recommended `fork`, `dependency` or `review` dispositions. **A dependency classification does not exempt a component from integration testing**; a fork is warranted only when code modification or independent maintenance justifies it. The research objective is to evaluate **all applicable models individually**, then evaluate their compatibility and the full disease pipeline.
@@ -124,7 +143,7 @@ For **each** entry in [automation/model-forks.json](automation/model-forks.json)
 1. Confirm original GitHub repository/owner, latest usable release, archival/maintenance status, security implications, paper and exact clinical task. Distinguish trained weights, benchmarks, frameworks and infrastructure.
 2. Audit **four independent legal elements**: code license, pretrained checkpoint/license, source dataset rights, and commercial deployment terms. Keep unverified entries blocked.
 3. Determine **fork or dependency**. For an upstream source requiring code changes, create a GitHub fork under the project owner. Otherwise install a pinned dependency or managed service. A public repo is not permission to use every model weight.
-4. Pin upstream commit and checkpoint hash; record architecture, preprocessing, runtime, inputs, outputs, approved evidence and responsible maintainer. Prefer **no-training/CPU-capable small models**; audit target 8 GB VRAM and host memory.
+4. Pin upstream commit and checkpoint hash; record architecture, preprocessing, runtime, inputs, outputs, approved evidence and responsible maintainer. Prefer **no-training/CPU-capable small models** when feasible; benchmark across hardware profiles rather than imposing a universal 8 GB GPU limit.
 5. Store source forks as separate GitHub repositories. Use optional Git submodules for source pointers; **never copy all model repositories, datasets or checkpoints into the main Git history**.
 6. Record fork URL and review status in `automation/forks-tracked.json` using the [forking agent](automation/fork_models.py) once executed, and make a reviewed `git add` / `git commit` / `git push`.
 
