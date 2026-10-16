@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "disease": "example-research-condition",
+  "entrypoint": "clinical_intake",
+  "research_only": true,
+  "steps": [
+    {
+      "id": "clinical_intake",
+      "kind": "conversation",
+      "depends_on": [],
+      "required": true,
+      "input_keys": [],
+      "output_keys": [
+        "history"
+      ],
+      "executor": "human",
+      "model": null,
+      "evaluation": {
+        "dataset_id": null,
+        "metric": "review_completeness",
+        "target": null,
+        "status": "pending",
+        "result_path": null
+      },
+      "evidence_status": "pending",
+      "approval_required": true
+    },
+    {
+      "id": "test_selection",
+      "kind": "examination_selection",
+      "depends_on": [
+        "clinical_intake"
+      ],
+      "required": true,
+      "input_keys": [
+        "history"
+      ],
+      "output_keys": [
+        "exam_decision"
+      ],
+      "executor": "human",
+      "model": null,
+      "evaluation": {
+        "dataset_id": null,
+        "metric": "guideline_concordance",
+        "target": null,
+        "status": "pending",
+        "result_path": null
+      },
+      "evidence_status": "pending",
+      "approval_required": true
+    },
+    {
+      "id": "image_qc",
+      "kind": "quality_control",
+      "depends_on": [
+        "test_selection"
+      ],
+      "required": false,
+      "input_keys": [
+        "exam_decision"
+      ],
+      "output_keys": [
+        "quality_status"
+      ],
+      "executor": "none",
+      "model": null,
+      "evaluation": {
+        "dataset_id": null,
+        "metric": "quality_failure_detection",
+        "target": null,
+        "status": "pending",
+        "result_path": null
+      },
+      "evidence_status": "pending",
+      "approval_required": true
+    },
+    {
+      "id": "finding_model",
+      "kind": "finding_detection",
+      "depends_on": [
+        "image_qc"
+      ],
+      "required": false,
+      "input_keys": [
+        "quality_status"
+      ],
+      "output_keys": [
+        "finding_candidates"
+      ],
+      "executor": "model",
+      "model": {
+        "registry_id": "MODEL_PENDING",
+        "version": "UNVERIFIED",
+        "weights_sha256": null,
+        "adapter": null
+      },
+      "evaluation": {
+        "dataset_id": null,
+        "metric": "sensitivity_specificity",
+        "target": null,
+        "status": "pending",
+        "result_path": null
+      },
+      "evidence_status": "pending",
+      "approval_required": true
+    },
+    {
+      "id": "specialist_review",
+      "kind": "interpretation",
+      "depends_on": [
+        "test_selection",
+        "finding_model"
+      ],
+      "required": true,
+      "input_keys": [
+        "exam_decision"
+      ],
+      "output_keys": [
+        "verified_report"
+      ],
+      "executor": "human",
+      "model": null,
+      "evaluation": {
+        "dataset_id": null,
+        "metric": "expert_agreement",
+        "target": null,
+        "status": "pending",
+        "result_path": null
+      },
+      "evidence_status": "pending",
+      "approval_required": true
+    },
+    {
+      "id": "management",
+      "kind": "management_evidence",
+      "depends_on": [
+        "specialist_review"
+      ],
+      "required": true,
+      "input_keys": [
+        "verified_report"
+      ],
+      "output_keys": [
+        "clinician_decision"
+      ],
+      "executor": "human",
+      "model": null,
+      "evaluation": {
+        "dataset_id": null,
+        "metric": "guideline_source_accuracy",
+        "target": null,
+        "status": "pending",
+        "result_path": null
+      },
+      "evidence_status": "pending",
+      "approval_required": true
+    },
+    {
+      "id": "follow_up",
+      "kind": "follow_up",
+      "depends_on": [
+        "management"
+      ],
+      "required": true,
+      "input_keys": [
+        "clinician_decision"
+      ],
+      "output_keys": [
+        "acknowledgement"
+      ],
+      "executor": "human",
+      "model": null,
+      "evaluation": {
+        "dataset_id": null,
+        "metric": "closed_loop_completion",
+        "target": null,
+        "status": "pending",
+        "result_path": null
+      },
+      "evidence_status": "pending",
+      "approval_required": true
+    }
+  ]
+}
