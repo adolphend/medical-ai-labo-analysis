@@ -4,6 +4,10 @@
 
 **Intended future workflow:** clinical intake → indication and examination selection → data acquisition and QC → specialist model-assisted findings and measurements → evidence-linked draft report → clinician-reviewed diagnostic interpretation and management options → documented follow-up. Every clinical decision remains under accountable professional oversight until and unless a separately validated and appropriately authorized tool is established.
 
+**Research areas:** clinical AI tools, medical imaging AI, open-source medical models, diagnostic decision support, ultrasound, chest X-ray, CT, MRI, medical image segmentation, MedGemma benchmarks, dataset evaluation, and agent-assisted clinical software development.
+
+[Discoverability and research topic index](docs/DISCOVERABILITY.md) · [Medical AI model analysis](research/imaging/model-integration-registry.md) · [Clinical disease workflows](diseases/README.md) · [Evaluation and benchmark research](evaluation/README.md)
+
 ## Development status: planning first, implementation later
 
 **The clinical tools have not been developed yet.** This repository is presently a **research, requirements, architecture and agent-planning workspace**. Existing Python scripts, JSON schemas, benchmark examples and installation helpers are exploratory infrastructure/prototypes; they are **not** implemented clinical products or evidence that disease workflows function end to end.
