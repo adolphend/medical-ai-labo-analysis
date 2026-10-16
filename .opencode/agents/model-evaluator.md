@@ -42,3 +42,6 @@ Read `evaluation/medgemma-50-disease-pipeline.md`; execute `scripts/benchmark_50
 
 ## Nine-stage MedGemma workflow
 Read `evaluation/medgemma-end-to-end-50-diseases.md`. Generate a research plan using `scripts/medgemma_disease_pipeline.py`. Evaluate each of the nine stages independently against appropriate adjudicated cases. Clinical management is only guideline retrieval, source reliability and human review; no automated treatment instructions or prescriptions. Never count a planned stage as a model test.
+
+## Concrete chest X-ray smoke and dataset analysis
+For disease `pneumonia`, read `evaluation/cases/pneumonia-medmnist/README.md` and the MedGemma analysis in `evaluation/medgemma-technical-clinical-analysis.md`. Verify publisher-supplied data artifact checksum, license, holdout restrictions and separate agreement to Google's model terms. Use `scripts/medgemma_pneumonia_case.py` with explicit --download, --infer, then --score only with approval. Do not confuse pediatric resized X-ray labels or benchmark outcomes with patient diagnosis and treatment safety.
