@@ -288,3 +288,10 @@ Run OpenCode from the repository root. Commands include `/build-disease heart-fa
 - **Not established:** end-to-end real-model execution across the 50 diseases, model accuracy on local hardware, dataset suitability across all conditions, clinical/regulatory validation or autonomous treatment safety.
 
 **Evidence standards:** cite actual academic studies and clinical guidelines; separate the paper's result from our locally measured output; expose uncertainty, incomplete coverage and limitations.
+
+## License and third-party rights
+
+The project's **original repository code and documentation** are published under the [MIT License](LICENSE) (copyright 2026 adolphend). MIT permits use, modification and redistribution, including commercial use, subject to preserving the copyright and license notice; it includes a warranty disclaimer.
+
+**Important scope:** this project license does **not** grant rights to third-party repositories, pretrained model weights (including gated MedGemma), medical datasets, patient information, externally supplied images or separately licensed dependencies. Review each upstream code, checkpoint and dataset license and any medical-data access agreements independently **before forking, downloading, training, distributing or commercial deployment**. Clinical/regulatory authorization, privacy obligations and patient-safety validation are separate from open-source licensing.
+
