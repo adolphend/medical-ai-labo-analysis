@@ -16,3 +16,6 @@ Use `evaluation/medgemma-50-disease-pipeline.md` and `scripts/benchmark_50_disea
 
 ## 8GB local MedGemma preparation
 Read `models/medgemma-local/README.md`. Confirm CUDA and dependency compatibility. Preview `models/medgemma-local/download.py` first, then require user's approval and accepted Hugging Face gated terms before any actual weight download. Run `models/medgemma-local/infer.py` only after local installation. Treat its generated text, memory and duration as a technical smoke test, never a clinical accuracy measurement. Keep weights and run artifacts out of Git.
+
+## Cross-platform install guidance
+Read `models/medgemma-local/INSTALL-CROSS-PLATFORM.md` before preparing the environment. Verify operating system, Python, CUDA/MPS and disk capacity; preview first with `models/medgemma-local/install.py`, then request permission before `--apply`. Do not automatically download gated MedGemma weights. The existing inference runner requires NVIDIA CUDA and has not been verified on macOS.
