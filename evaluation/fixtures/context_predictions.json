@@ -1,0 +1,32 @@
+[
+  {
+    "case_id": "synthetic-001",
+    "facts": [
+      "symptom_reported"
+    ],
+    "missing_information": [
+      "onset"
+    ],
+    "candidate_examinations": [
+      "clinician_assessment"
+    ],
+    "contraindication_flags": [],
+    "requires_human_review": true,
+    "evidence_ids": [
+      "fixture-a"
+    ]
+  },
+  {
+    "case_id": "synthetic-002",
+    "facts": [],
+    "missing_information": [],
+    "candidate_examinations": [
+      "review_existing_report"
+    ],
+    "contraindication_flags": [],
+    "requires_human_review": false,
+    "evidence_ids": [
+      "fixture-b"
+    ]
+  }
+]
