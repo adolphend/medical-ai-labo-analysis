@@ -15,3 +15,12 @@
 9. Lacson et al., *Impact of an electronic alert notification system ...*, BMJ Quality & Safety, doi:10.1136/bmjqs-2015-004276 — https://qualitysafety.bmj.com/content/25/7/518
 10. Moore et al. (2023), *Best Practices in Communication and Management of Actionable Incidental Findings*, JACR, doi:10.1016/j.jacr.2023.01.001 — https://pubmed.ncbi.nlm.nih.gov/36922265/
 11. AHRQ, *Safer Dx e-Triggers*: https://www.ahrq.gov/patient-safety/reports/issue-briefs/state-of-science-2b.html
+
+## Shared evidence identifiers
+
+- **W0** — National Academies (2015), *Improving Diagnosis in Health Care*, Chapter 2: https://www.ncbi.nlm.nih.gov/books/NBK338593/ (consensus report, not primary experimental research).
+- **W1** — Callen et al. (2012), *Failure to Follow-Up Test Results for Ambulatory Patients: A Systematic Review*: https://doi.org/10.1007/s11606-011-1949-5 (peer-reviewed systematic review).
+- **W2** — Jodogne (2018), *The Orthanc Ecosystem for Medical Imaging*: https://doi.org/10.1007/s10278-018-0082-y (peer-reviewed technical article).
+- **W3** — Eyre et al. (2021), *Launching into Clinical Space with medSpaCy*: https://arxiv.org/abs/2106.07799 (AMIA proceedings; linked preprint).
+
+A tool-method paper does not establish effectiveness in routine clinical deployment.
