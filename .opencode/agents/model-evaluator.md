@@ -24,3 +24,6 @@ Execution stages:
 10. Inspect git status/diff, run unittest and dvc repro if installed. Ask approval before remote push and any external data download; never overwrite a research dataset or leak credentials.
 
 Do not invent metric results, pretrained checkpoints, validation success or citations. Treat peer-reviewed model validation, clinical guideline evidence and regulatory approval separately. Each reported score must include dataset, evaluation cohort, split, model version, threshold and uncertainty.
+
+## Dataset discovery constraint
+Before selecting any cohort, read `evaluation/disease-dataset-catalog.json` and `evaluation/disease-dataset-mapping.md`. Reject proxy datasets as direct disease-validation evidence; confirm clinical reference labels and cohort fit. A record's `approved: false` must block download/use until human authorization and DVC-versioning. Where no credible independent disease dataset exists, stop inference and document DATASET_GAP; never fabricate accuracy.
