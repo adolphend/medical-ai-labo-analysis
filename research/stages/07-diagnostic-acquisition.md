@@ -10,7 +10,7 @@
 
 **T:** Jodogne 2018 for DICOM; [Makowski et al. 2021](https://doi.org/10.3758/s13428-020-01516-y) for physiological signals
 
-Evidence shorthand (W0, W1, W2, W3) is defined in [the original evidence map](../patient-flow-and-diagnostic-workflow.md), retained for traceability. An academic paper supporting a technology is not evidence of improved patient outcomes.
+Evidence shorthand (W0, W1, W2, W3) is defined in the [central academic references](../evidence/references.md). An academic paper supporting a technology is not evidence of improved patient outcomes.
 
 ## Feasible first prototype (no new model training)
 
