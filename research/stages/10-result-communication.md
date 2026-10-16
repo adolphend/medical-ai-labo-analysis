@@ -10,7 +10,7 @@
 
 **W:** Callen et al. 2012 (W1)
 
-Evidence shorthand (W0, W1, W2, W3) is defined in [the original evidence map](../patient-flow-and-diagnostic-workflow.md), retained for traceability. An academic paper supporting a technology is not evidence of improved patient outcomes.
+Evidence shorthand (W0, W1, W2, W3) is defined in the [central academic references](../evidence/references.md). An academic paper supporting a technology is not evidence of improved patient outcomes.
 
 ## Feasible first prototype (no new model training)
 
