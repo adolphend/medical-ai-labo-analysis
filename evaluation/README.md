@@ -40,3 +40,20 @@ See [full methodology](protocol.md) and [dataset options](datasets.md).
 ## Disease-specific dataset discovery
 
 [50-disease dataset mapping](disease-dataset-mapping.md) · [Machine-readable candidate list](disease-dataset-catalog.json). The discovery catalog maps all 50 conditions to 24 candidate datasets/portals or explicitly unresolved gaps. A disease-to-dataset link is **not** an authorization, validated label match or evidence of clinical accuracy. Run `python3 scripts/check_disease_dataset_catalog.py` to check completeness; all candidates require a rights and label audit.
+
+## Automated downloads and end-to-end smoke tests
+
+[Downloader](../scripts/download_dataset.py) · [Pipeline runner](../scripts/run_evaluation_pipeline.py) · [Downloader tests](../tests/test_download_dataset.py) · [OpenCode dataset agent](../.opencode/agents/dataset-pipeline.md)
+
+```bash
+# No network / no patient data. Validates metadata, runs tests and synthetic fixture metrics:
+python3 scripts/run_evaluation_pipeline.py
+
+# Fail-closed preview, requiring approved source, version, exact file SHA256 and direct HTTPS URL:
+python3 scripts/download_dataset.py --dataset ptb-xl
+
+# Only AFTER explicit dataset approval and verification of direct link + checksum:
+python3 scripts/download_dataset.py --dataset DATASET_ID --apply --dvc-add
+```
+
+All real sources are **unapproved initially**. Portal URLs cannot be used as `download_url`; some sites require manual registration and cannot be auto-downloaded. Change registry metadata only after reviewing original provider terms. `--dvc-add` requires `dvc init` in the local clone and does not publish dataset bytes. Never commit dataset archives or sensitive metadata. The smoke script tests artificial binary predictions; it does not invoke a pretrained medical model.
