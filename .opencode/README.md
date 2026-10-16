@@ -56,3 +56,9 @@ The agent is intentionally incremental. It works one condition at a time and fla
 ## Evaluation and dataset pipeline agent
 
 [Model evaluator agent](agents/model-evaluator.md) · [Evaluate model command](commands/evaluate-model.md) · [Testing protocol](../evaluation/README.md) · [Dataset candidates](../evaluation/datasets.md). Use `/evaluate-model disease-slug model-id` after completing a disease's research module; begin with synthetic fixtures and DVC-tracked authorized datasets. Never mistake fixture scores for medical accuracy.
+
+## Dataset and reproducible pipeline agent
+
+[Dataset Pipeline Agent](agents/dataset-pipeline.md) · [Run Evaluation Command](commands/run-evaluation.md) · [Downloader](../../scripts/download_dataset.py) · [Offline test runner](../../scripts/run_evaluation_pipeline.py).
+
+Use `/run-evaluation heart-failure echonet` to run synthetic verification and design the next medically appropriate, licensed dataset/model adapter. Human approval is mandatory for real dataset acquisition. No agent may bypass credentials, infer checksum values or mark datasets approved without checking use agreements.
