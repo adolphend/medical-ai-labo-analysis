@@ -49,3 +49,7 @@
 ## Expanded diagnostic AI analysis
 
 [Eight-stage diagnostic AI research](diagnostics/README.md) covers clinical conversation, examination choice, quality per modality, anatomy, disease, interpretation, screening, cross-modality synthesis, and clinician-led management. Each module is separately sourced and linked.
+
+## Imaging-specific patient-to-management pathways
+
+[Imaging modality research index](imaging/README.md) links independent ultrasound, radiography/mammography, CT, MRI, pathology/endoscopy, and multimodal workflows. Each examines patient conversation, indication, acquisition QC, anatomy, disease findings, reporting and human-supervised treatment/follow-up.
