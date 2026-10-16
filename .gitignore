@@ -1,0 +1,15 @@
+# Private or large datasets, model weights and generated outputs
+/data/raw/
+/data/processed/
+/models/weights/
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.safetensors
+/evaluation/results/
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
