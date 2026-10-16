@@ -79,3 +79,7 @@ All cases are fabricated test fixtures. For actual cases, expert-adjudicated lab
 ## 50-disease MedGemma evaluation planning
 
 [50-disease comparison pipeline](medgemma-50-disease-pipeline.md) · [Benchmark generator](../scripts/benchmark_50_diseases.py). Generates 250 planned disease/task comparisons without inventing model scores; each test requires independently approved reference data and task-compatible models.
+
+## Full nine-stage MedGemma disease procedure
+
+[50-disease end-to-end evaluation](medgemma-end-to-end-50-diseases.md) · [JSON planner/interpreter](../scripts/medgemma_disease_pipeline.py). Generates 50 × 9 independent stage evaluations, including patient intake, imaging/other examination selection, interpretation, guideline evidence review, and follow-up. The plan does not execute a model or authorize treatment.
