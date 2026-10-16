@@ -34,3 +34,6 @@ Continue through registry only when explicitly asked, one scoped reviewed commit
 
 ## Canonical JSON procedure
 For each disease, create procedure.json using pipeline/example-procedure.json. Define starting point, dependencies, required steps, input/output keys, model registry references, and an independent evaluation object for every step. Validate with scripts/interpret_procedure.py. No model may be represented as validated based on a different model's test. The interpreter plans only; it does not run clinical inference.
+
+## Context-aware disease procedure
+Every disease JSON must distinguish isolated image detection from patient context interpretation: history, clinical indications, missing data, contraindication checks, examination options, specialist report and evidence-linked management review. Add separate evaluation metrics and datasets per stage. Do not treat a binary disease score as full diagnosis or treatment readiness.
