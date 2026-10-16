@@ -64,6 +64,51 @@ python3 scripts/medgemma_pneumonia_case.py --score
 
 Read the [case's methodology and limitations](evaluation/cases/pneumonia-medmnist/README.md). This dataset is a resized pediatric chest-radiograph benchmark; **it cannot validate clinical pneumonia diagnosis**, therapeutic recommendations or applicability to adults. Do not claim the pipeline measured clinical accuracy unless real inference was actually executed.
 
+## Multi-model analysis and new-model development
+
+The project evaluates **multiple specialized models**, not just MedGemma. Each disease may combine clinical text extraction, examination selection, quality control, segmentation, detection, interpretation and clinician-reviewed guideline evidence. Different models can also compete for the **same task**. A model is never assumed valid for a disease simply because its upstream repository is available.
+
+### Available analysis options
+
+| Analysis track | Representative existing models/tools | Evaluation questions |
+|---|---|---|
+| Clinical context and reporting | MedGemma 1.5, medSpaCy, CheXbert, RadGraph, Whisper (transcription) | Facts, missing context, contradictions, hallucinations, missed red flags, source fidelity |
+| Ultrasound | EchoNet-Dynamic, SonoNet, MedSAM (prompted segmentation) | Correct plane, left-ventricular measurement error, anatomy masks, patient/site shift |
+| Chest X-ray | TorchXRayVision, CheXzero, MedGemma | Per-finding sensitivity/specificity, label uncertainty, out-of-domain errors |
+| CT | TotalSegmentator, task-specific MONAI bundles, LUNA16 benchmark implementations | Segmentation Dice and measurement error, nodule sensitivity/false positives per scan |
+| MRI | MRIQC, ANTsPyNet, task-specific MONAI models, MedSAM | QC sensitivity, region masks, lesion reference labels, sequence/site robustness |
+| Microscopy/pathology | HoVer-Net, Cellpose, QuPath, HistoQC | Nucleus masks, tissue artifacts, classification error and scanner/stain shift |
+| Physiological signals | WFDB, NeuroKit2, task-specific ECG classifiers to verify | Signal quality, patient-level sensitivity, rhythm classification; not image interpretation |
+| Clinical information systems | HAPI FHIR, OHIF, Orthanc, Medplum | Data provenance, interface correctness, report delivery, acknowledgement and follow-up |
+
+These are **research candidates and infrastructure**, not an approved set of clinical diagnostic models. Some have pretrained checkpoints and some are frameworks, benchmarks or non-AI tools; weight access, code/data licenses and independent validation must be reviewed for each.
+
+### Model selection and development decision
+
+1. **Define the target and reference standard**: disease, patient group, imaging or non-imaging examination, intended outcome, and human review.
+2. **Inventory alternatives**: use the [model integration registry](research/imaging/model-integration-registry.md) and [fork manifest](automation/model-forks.json). Distinguish a reusable pretrained model from a framework needing task-specific weights.
+3. **Use the same authorized cases where comparable**: lock dataset and split using [DVC governance](evaluation/README.md), verify train/test contamination and licensing, freeze prompts and preprocessing.
+4. **Test each model separately**: record exact version, weights, input/output JSON contract, reference labels, task metrics, confidence intervals where feasible, latency, peak GPU/CPU RAM, abstentions and failures.
+5. **Compare only like-for-like outputs**: classification against classification, segmentation against segmentation, measurement against reference measurement, and clinical context against adjudicated context. A Dice score cannot be compared directly with medical-text F1.
+6. **Test multi-model integration**: evaluate errors propagated between image quality, anatomy, finding detection and report generation; verify that a failed early stage cannot turn into a confident downstream diagnosis or management suggestion.
+7. **Develop a new model only for a verified gap**: start with a deterministic baseline or pretrained model; consider calibration or parameter-efficient adaptation if permitted; train from scratch only when evidence, labeled data, rights and computing resources justify it. The **8 GB RTX 4060** is the initial development constraint, not an assumed guarantee of training feasibility.
+8. **Release only research outputs with traceability**: write per-step scores/results into [disease procedure JSON](pipeline/README.md) and a model evaluation card. Human specialist verification remains mandatory before any clinical care decision; no autonomous treatment or prescription.
+
+### Example model composition
+
+```text
+Patient intake → medSpaCy / MedGemma context analysis
+Clinical indication → clinician-reviewed guideline rules
+Ultrasound quality → SonoNet (fetal planes only) or verified task-specific QC
+Anatomy / measurement → EchoNet-Dynamic (cardiac) or MedSAM prompted masks
+Disease-specific finding → separately validated model or explicit MODEL_GAP
+Reporting → source-linked structured report + MedGemma draft
+Management evidence → versioned guideline retrieval + clinician approval
+Follow-up → FHIR task / result acknowledgement
+```
+
+The example is **not one executable universal chain**: model applicability depends on the clinical question and modality. The disease JSON must list the actual model(s), alternatives, version and **independent evaluation** for each step. The [MedGemma technical analysis](evaluation/medgemma-technical-clinical-analysis.md) is one entry in the broader multi-model research program.
+
 ## Dataset control
 
 [Dataset candidates for the 50 conditions](evaluation/disease-dataset-mapping.md) require individual access and label reviews. Data and weights are excluded from Git. [DVC guidance](evaluation/README.md) describes local versioning and protected remotes; never push protected records to public storage. Records of completed tests must include hashes, versioned labels and source documentation.
