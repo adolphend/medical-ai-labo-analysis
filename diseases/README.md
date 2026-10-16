@@ -35,3 +35,6 @@ After verifying the first disease, ask it to process the **next unresearched con
 Every disease research module must record the intended patient group and clinical question, imaging and nonimaging alternatives, data/QC requirements, model repo/weights/version/license, academic evidence and study limitations, safety exceptions, evaluation plan, clinician review points and follow-up responsibilities.
 
 The repo intentionally does **not** provide individualized treatment recommendations. Management files should surface guidelines for a qualified clinician to interpret.
+
+## JSON-first workflow contracts
+Each disease folder can now be generated with `procedure.json` (see [example](../pipeline/example-procedure.json)). It declares starting step, dependencies, required and optional steps, model identifiers and independent evaluation requirements. Run `python3 scripts/interpret_procedure.py diseases/heart-failure/procedure.json --json` after `python3 scripts/scaffold_diseases.py --disease heart-failure`. The interpreter checks validity and outputs a research execution plan, **not** patient diagnosis or model inference. Legacy `pipeline.yaml` is retained only for compatibility.
