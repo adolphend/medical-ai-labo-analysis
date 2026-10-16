@@ -54,3 +54,7 @@ The smoke JSON is **not** a medical accuracy result. An adapter must first conve
 - No patient data should be entered into smoke prompts, committed to Git, or sent to outside services.
 - For CT/MRI/ultrasound, verify image/volume preprocessing and independently validate each pathway.
 - MedGemma is research infrastructure, not a doctor or treatment recommender.
+
+## Cross-platform installation
+
+[Windows, Ubuntu/WSL2 and macOS installation pipeline](INSTALL-CROSS-PLATFORM.md) · [Shared Python installer](install.py) · [Windows PowerShell wrapper](install.ps1) · [Linux/macOS shell wrapper](install.sh) · [Hardware verification](verify.py). The installer is preview-only unless invoked with `--apply`; downloading model weights remains a separate gated step. Mac environment preparation is supported, but CUDA-only `infer.py` is not an MPS inference implementation.
