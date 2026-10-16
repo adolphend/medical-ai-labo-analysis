@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "datasets": [
+    {
+      "id": "echonet-dynamic",
+      "url": "https://echonet.github.io/dynamic/",
+      "modality": "echocardiography",
+      "task": "ejection_fraction_regression",
+      "access": "terms_review_required",
+      "approved": false,
+      "version": null,
+      "sha256": null
+    },
+    {
+      "id": "chexpert",
+      "url": "https://stanfordmlgroup.github.io/competitions/chexpert/",
+      "modality": "chest_xray",
+      "task": "multilabel_classification",
+      "access": "terms_review_required",
+      "approved": false,
+      "version": null,
+      "sha256": null
+    },
+    {
+      "id": "mimic-cxr-jpg",
+      "url": "https://physionet.org/content/mimic-cxr-jpg/",
+      "modality": "chest_xray",
+      "task": "report_and_multilabel",
+      "access": "credentialed",
+      "approved": false,
+      "version": null,
+      "sha256": null
+    },
+    {
+      "id": "lidc-idri",
+      "url": "https://www.cancerimagingarchive.net/collection/lidc-idri/",
+      "modality": "ct",
+      "task": "lung_nodule_detection",
+      "access": "terms_review_required",
+      "approved": false,
+      "version": null,
+      "sha256": null
+    },
+    {
+      "id": "luna16",
+      "url": "https://luna16.grand-challenge.org/",
+      "modality": "ct",
+      "task": "nodule_detection",
+      "access": "challenge_rules",
+      "approved": false,
+      "version": null,
+      "sha256": null
+    },
+    {
+      "id": "medical-segmentation-decathlon",
+      "url": "http://medicaldecathlon.com/",
+      "modality": "ct_mri",
+      "task": "segmentation",
+      "access": "task_specific_review",
+      "approved": false,
+      "version": null,
+      "sha256": null
+    },
+    {
+      "id": "ptb-xl",
+      "url": "https://physionet.org/content/ptb-xl/",
+      "modality": "ecg",
+      "task": "multilabel_classification",
+      "access": "license_review_required",
+      "approved": false,
+      "version": null,
+      "sha256": null
+    },
+    {
+      "id": "fetal-planes-db",
+      "url": "https://zenodo.org/records/3904280",
+      "modality": "ultrasound",
+      "task": "plane_classification",
+      "access": "license_review_required",
+      "approved": false,
+      "version": null,
+      "sha256": null
+    }
+  ]
+}
