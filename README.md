@@ -291,10 +291,8 @@ Run OpenCode from the repository root. Commands include `/build-disease heart-fa
 
 ## License and third-party rights
 
-**Research-only source-available — NOT MIT or open source.** Original project material is governed by the [Custom Research-Only Source License](LICENSE). It permits specified **internal non-commercial scientific research, evaluation and education**, but does **not** authorize commercial use, redistribution, sublicensing, public hosting of modified copies, or clinical deployment without a separate written agreement. All other rights are reserved.
+**[PolyForm Noncommercial License 1.0.0](LICENSE)** applies to the project's original material, to the extent the contributors have rights to license it. This existing source-available license permits **noncommercial use, modification, and redistribution**, with required license notices. **Commercial use is not authorized under this license**; organizations intending commercial use must contact the rights holder for a separate written agreement. The official text also disclaims warranties and limits licensor liability **as far as the law allows**; it cannot prevent lawsuits or override mandatory legal obligations.
 
-The repository remains public for research discoverability. **Public visibility does not mean unrestricted use.** GitHub's platform terms permit viewing and forking within GitHub's terms; separately granted commercial and redistribution rights do not follow automatically.
+Not all institutional research is automatically noncommercial; check the license's definitions and commercial-purpose restrictions. Source availability does not equal OSI-approved open source.
 
-**Prior MIT release warning:** Earlier revisions of this repository were published with an MIT license. Changing the current license does **not** automatically withdraw permissions already granted to recipients of those versions; get legal advice before relying on restrictions for historic copies or contributions. This custom license has not been reviewed by counsel and should be reviewed before formal use, especially if accepting external contributions.
-
-Each upstream model, dataset, medical image and checkpoint retains its original license and data/privacy requirements. The repository cannot relicense third-party assets or grant clinical/regulatory approval.
+**Earlier MIT versions:** replacing the license now does not retroactively cancel permissions previously granted under MIT for earlier revisions. Third-party models, weights, datasets and dependencies retain their own license terms. Clinical-use restrictions and applicable regulatory/privacy obligations are separate from copyright licensing; the current repository is not validated for patient care.
