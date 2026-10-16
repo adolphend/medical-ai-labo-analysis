@@ -19,3 +19,6 @@ Read `models/medgemma-local/README.md`. Confirm CUDA and dependency compatibilit
 
 ## Cross-platform install guidance
 Read `models/medgemma-local/INSTALL-CROSS-PLATFORM.md` before preparing the environment. Verify operating system, Python, CUDA/MPS and disk capacity; preview first with `models/medgemma-local/install.py`, then request permission before `--apply`. Do not automatically download gated MedGemma weights. The existing inference runner requires NVIDIA CUDA and has not been verified on macOS.
+
+## End-to-end disease workflow
+Use `evaluation/medgemma-end-to-end-50-diseases.md` and `scripts/medgemma_disease_pipeline.py` for 50 conditions × nine independently assessed steps. Begin with clinical context, continue through required examinations, QC, findings, synthesis, reporting, guideline-based clinician management evidence and follow-up. Don't treat model output as patient-specific treatment or diagnosis. Record not_tested/not_comparable when reference data or modality is unsupported.
