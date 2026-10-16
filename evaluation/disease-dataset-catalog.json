@@ -1,0 +1,784 @@
+{
+  "schema_version": 1,
+  "disclaimer": "Candidate discovery mapping, not validation; proxy datasets may lack disease labels or exact modality; dataset license and access not automatically approved.",
+  "sources": [
+    {
+      "id": "medmnist",
+      "name": "MedMNIST v2",
+      "url": "https://github.com/MedMNIST/MedMNIST",
+      "access": "open_download",
+      "task": "classification research proxy; subset/license dependent",
+      "paper": "https://doi.org/10.1038/s41597-022-01721-8",
+      "approved": false
+    },
+    {
+      "id": "echonet",
+      "name": "EchoNet-Dynamic",
+      "url": "https://echonet.github.io/dynamic/",
+      "access": "registration_noncommercial",
+      "task": "EF and left ventricular segmentation",
+      "paper": "https://doi.org/10.1038/s41586-020-2145-8",
+      "approved": false
+    },
+    {
+      "id": "chexpert",
+      "name": "CheXpert",
+      "url": "https://stanfordmlgroup.github.io/competitions/chexpert/",
+      "access": "agreement_review",
+      "task": "chest X-ray observation labels",
+      "paper": "https://arxiv.org/abs/1901.07031",
+      "approved": false
+    },
+    {
+      "id": "mimiccxr",
+      "name": "MIMIC-CXR-JPG",
+      "url": "https://physionet.org/content/mimic-cxr-jpg/",
+      "access": "credentialed",
+      "task": "chest X-ray labels and reports",
+      "paper": "https://doi.org/10.1038/s41597-019-0322-0",
+      "approved": false
+    },
+    {
+      "id": "mimiciv",
+      "name": "MIMIC-IV",
+      "url": "https://physionet.org/content/mimiciv/",
+      "access": "credentialed",
+      "task": "clinical encounters, labs and longitudinal outcomes",
+      "paper": "https://physionet.org/content/mimiciv/",
+      "approved": false
+    },
+    {
+      "id": "lidc",
+      "name": "LIDC-IDRI",
+      "url": "https://www.cancerimagingarchive.net/collection/lidc-idri/",
+      "access": "terms_review",
+      "task": "CT lung nodule annotation; not cancer diagnosis",
+      "paper": "https://doi.org/10.1118/1.3528204",
+      "approved": false
+    },
+    {
+      "id": "luna16",
+      "name": "LUNA16",
+      "url": "https://luna16.grand-challenge.org/",
+      "access": "challenge_rules",
+      "task": "pulmonary nodule detection",
+      "paper": "https://doi.org/10.1016/j.media.2017.06.015",
+      "approved": false
+    },
+    {
+      "id": "msd",
+      "name": "Medical Segmentation Decathlon",
+      "url": "http://medicaldecathlon.com/",
+      "access": "task_specific_terms",
+      "task": "CT/MRI segmentation, several organ/tumor tasks",
+      "paper": "https://doi.org/10.1038/s41467-022-30695-9",
+      "approved": false
+    },
+    {
+      "id": "brats",
+      "name": "BraTS",
+      "url": "https://www.synapse.org/brats",
+      "access": "registration_challenge",
+      "task": "brain tumor MRI segmentation",
+      "paper": "https://www.synapse.org/brats",
+      "approved": false
+    },
+    {
+      "id": "ptbxl",
+      "name": "PTB-XL",
+      "url": "https://physionet.org/content/ptb-xl/",
+      "access": "license_review",
+      "task": "ECG diagnostic statements",
+      "paper": "https://doi.org/10.1038/s41597-020-0495-6",
+      "approved": false
+    },
+    {
+      "id": "idrid",
+      "name": "IDRiD",
+      "url": "https://idrid.grand-challenge.org/Data/",
+      "access": "challenge_terms",
+      "task": "diabetic retinopathy lesion masks, severity",
+      "paper": "https://idrid.grand-challenge.org/Data/",
+      "approved": false
+    },
+    {
+      "id": "isic",
+      "name": "ISIC Archive",
+      "url": "https://www.isic-archive.com/",
+      "access": "image_specific_licenses",
+      "task": "dermoscopy lesion labels; not standalone melanoma diagnosis",
+      "paper": "https://www.isic-archive.com/",
+      "approved": false
+    },
+    {
+      "id": "monuseg",
+      "name": "MoNuSeg",
+      "url": "https://monuseg.grand-challenge.org/",
+      "access": "challenge_terms",
+      "task": "nuclear segmentation; tissue morphology proxy",
+      "paper": "https://monuseg.grand-challenge.org/",
+      "approved": false
+    },
+    {
+      "id": "fetalplanes",
+      "name": "Fetal Planes DB",
+      "url": "https://zenodo.org/records/3904280",
+      "access": "license_review",
+      "task": "fetal ultrasound plane labels not anomaly diagnoses",
+      "paper": "https://zenodo.org/records/3904280",
+      "approved": false
+    },
+    {
+      "id": "busi",
+      "name": "BUSI breast ultrasound",
+      "url": "https://zenodo.org/records/21128640",
+      "access": "license_review",
+      "task": "breast US benign/malignant classes and masks; source provenance audit",
+      "paper": "https://zenodo.org/records/21128640",
+      "approved": false
+    },
+    {
+      "id": "tcia",
+      "name": "TCIA collections portal",
+      "url": "https://www.cancerimagingarchive.net/collections/",
+      "access": "collection_specific",
+      "task": "find suitable cancer CT/MRI and annotation collections",
+      "paper": "https://www.cancerimagingarchive.net/collections/",
+      "approved": false
+    },
+    {
+      "id": "chestxray14",
+      "name": "NIH ChestX-ray14",
+      "url": "https://nihcc.app.box.com/v/ChestXray-NIHCC",
+      "access": "terms_review",
+      "task": "weakly labeled chest radiographs",
+      "paper": "https://nihcc.app.box.com/v/ChestXray-NIHCC",
+      "approved": false
+    },
+    {
+      "id": "freesurfer",
+      "name": "OASIS brain imaging",
+      "url": "https://sites.wustl.edu/oasisbrains/",
+      "access": "registration_terms",
+      "task": "brain MRI and clinical cognition research; not definitive Alzheimer diagnosis",
+      "paper": "https://sites.wustl.edu/oasisbrains/",
+      "approved": false
+    },
+    {
+      "id": "adni",
+      "name": "ADNI",
+      "url": "https://adni.loni.usc.edu/",
+      "access": "application_approval",
+      "task": "longitudinal dementia MRI/PET/clinical data",
+      "paper": "https://adni.loni.usc.edu/",
+      "approved": false
+    },
+    {
+      "id": "fastmri",
+      "name": "fastMRI",
+      "url": "https://fastmri.med.nyu.edu/",
+      "access": "agreement_review",
+      "task": "MRI reconstruction rather than disease diagnosis",
+      "paper": "https://fastmri.med.nyu.edu/",
+      "approved": false
+    },
+    {
+      "id": "rsnafracture",
+      "name": "RSNA Cervical Spine Fracture Detection",
+      "url": "https://www.kaggle.com/competitions/rsna-2022-cervical-spine-fracture-detection",
+      "access": "competition_terms",
+      "task": "cervical spine CT fracture label",
+      "paper": "https://www.kaggle.com/competitions/rsna-2022-cervical-spine-fracture-detection",
+      "approved": false
+    },
+    {
+      "id": "covidcxr",
+      "name": "SIIM-ACR Pneumothorax Segmentation",
+      "url": "https://www.kaggle.com/c/siim-acr-pneumothorax-segmentation",
+      "access": "competition_terms",
+      "task": "pneumothorax CXR segmentation",
+      "paper": "https://www.kaggle.com/c/siim-acr-pneumothorax-segmentation",
+      "approved": false
+    },
+    {
+      "id": "kidneyct",
+      "name": "KiTS kidney tumor segmentation",
+      "url": "https://kits-challenge.org/",
+      "access": "challenge_terms",
+      "task": "kidney and tumor CT segmentation; not hydronephrosis",
+      "paper": "https://kits-challenge.org/",
+      "approved": false
+    },
+    {
+      "id": "ultra",
+      "name": "Ultrasound dataset search gap",
+      "url": "",
+      "access": "not_identified",
+      "task": "requires verified specific reference labels and rights",
+      "paper": "",
+      "approved": false
+    }
+  ],
+  "diseases": [
+    {
+      "disease": "abdominal-aortic-aneurysm",
+      "candidates": [
+        {
+          "dataset_id": "medmnist",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "breast-cancer",
+      "candidates": [
+        {
+          "dataset_id": "busi",
+          "match": "task_relevant_check_labels"
+        },
+        {
+          "dataset_id": "tcia",
+          "match": "related_or_proxy_not_disease_validated"
+        },
+        {
+          "dataset_id": "medmnist",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "lung-cancer",
+      "candidates": [
+        {
+          "dataset_id": "lidc",
+          "match": "task_relevant_check_labels"
+        },
+        {
+          "dataset_id": "luna16",
+          "match": "task_relevant_check_labels"
+        },
+        {
+          "dataset_id": "tcia",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "colorectal-cancer",
+      "candidates": [
+        {
+          "dataset_id": "msd",
+          "match": "related_or_proxy_not_disease_validated"
+        },
+        {
+          "dataset_id": "medmnist",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "cervical-cancer",
+      "candidates": [
+        {
+          "dataset_id": "medmnist",
+          "match": "related_or_proxy_not_disease_validated"
+        },
+        {
+          "dataset_id": "tcia",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "prostate-cancer",
+      "candidates": [
+        {
+          "dataset_id": "msd",
+          "match": "related_or_proxy_not_disease_validated"
+        },
+        {
+          "dataset_id": "tcia",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "liver-cancer",
+      "candidates": [
+        {
+          "dataset_id": "msd",
+          "match": "related_or_proxy_not_disease_validated"
+        },
+        {
+          "dataset_id": "tcia",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "pancreatic-cancer",
+      "candidates": [
+        {
+          "dataset_id": "msd",
+          "match": "related_or_proxy_not_disease_validated"
+        },
+        {
+          "dataset_id": "tcia",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "thyroid-cancer",
+      "candidates": [
+        {
+          "dataset_id": "medmnist",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "skin-cancer",
+      "candidates": [
+        {
+          "dataset_id": "isic",
+          "match": "related_or_proxy_not_disease_validated"
+        },
+        {
+          "dataset_id": "medmnist",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "diabetic-retinopathy",
+      "candidates": [
+        {
+          "dataset_id": "idrid",
+          "match": "task_relevant_check_labels"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "glaucoma",
+      "candidates": [
+        {
+          "dataset_id": "medmnist",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "age-related-macular-degeneration",
+      "candidates": [
+        {
+          "dataset_id": "medmnist",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "cataract",
+      "candidates": [
+        {
+          "dataset_id": "medmnist",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "retinal-detachment",
+      "candidates": [
+        {
+          "dataset_id": "medmnist",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "ischemic-stroke",
+      "candidates": [
+        {
+          "dataset_id": "tcia",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "intracranial-hemorrhage",
+      "candidates": [
+        {
+          "dataset_id": "medmnist",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "brain-tumor",
+      "candidates": [
+        {
+          "dataset_id": "brats",
+          "match": "task_relevant_check_labels"
+        },
+        {
+          "dataset_id": "msd",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "multiple-sclerosis",
+      "candidates": [
+        {
+          "dataset_id": "msd",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "hydrocephalus",
+      "candidates": [
+        {
+          "dataset_id": "freesurfer",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "alzheimer-disease",
+      "candidates": [
+        {
+          "dataset_id": "adni",
+          "match": "related_or_proxy_not_disease_validated"
+        },
+        {
+          "dataset_id": "freesurfer",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "epilepsy",
+      "candidates": [
+        {
+          "dataset_id": "ptbxl",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "pneumonia",
+      "candidates": [
+        {
+          "dataset_id": "chexpert",
+          "match": "task_relevant_check_labels"
+        },
+        {
+          "dataset_id": "mimiccxr",
+          "match": "related_or_proxy_not_disease_validated"
+        },
+        {
+          "dataset_id": "chestxray14",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "tuberculosis",
+      "candidates": [
+        {
+          "dataset_id": "chestxray14",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "pulmonary-embolism",
+      "candidates": [
+        {
+          "dataset_id": "tcia",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "deep-vein-thrombosis",
+      "candidates": [
+        {
+          "dataset_id": "ultra",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "heart-failure",
+      "candidates": [
+        {
+          "dataset_id": "echonet",
+          "match": "task_relevant_check_labels"
+        },
+        {
+          "dataset_id": "mimiciv",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "valvular-heart-disease",
+      "candidates": [
+        {
+          "dataset_id": "echonet",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "coronary-artery-disease",
+      "candidates": [
+        {
+          "dataset_id": "mimiciv",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "atrial-fibrillation",
+      "candidates": [
+        {
+          "dataset_id": "ptbxl",
+          "match": "task_relevant_check_labels"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "congenital-heart-disease",
+      "candidates": [
+        {
+          "dataset_id": "echonet",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "abdominal-gallstones",
+      "candidates": [
+        {
+          "dataset_id": "ultra",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "fatty-liver-disease",
+      "candidates": [
+        {
+          "dataset_id": "ultra",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "liver-cirrhosis",
+      "candidates": [
+        {
+          "dataset_id": "tcia",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "hydronephrosis",
+      "candidates": [
+        {
+          "dataset_id": "ultra",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "kidney-stones",
+      "candidates": [
+        {
+          "dataset_id": "medmnist",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "chronic-kidney-disease",
+      "candidates": [
+        {
+          "dataset_id": "mimiciv",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "polycystic-kidney-disease",
+      "candidates": [
+        {
+          "dataset_id": "ultra",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "urinary-retention",
+      "candidates": [
+        {
+          "dataset_id": "ultra",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "ovarian-cysts",
+      "candidates": [
+        {
+          "dataset_id": "medmnist",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "ectopic-pregnancy",
+      "candidates": [
+        {
+          "dataset_id": "ultra",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "fetal-growth-restriction",
+      "candidates": [
+        {
+          "dataset_id": "fetalplanes",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "fetal-structural-anomalies",
+      "candidates": [
+        {
+          "dataset_id": "fetalplanes",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "placenta-previa",
+      "candidates": [
+        {
+          "dataset_id": "fetalplanes",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "osteoporosis",
+      "candidates": [
+        {
+          "dataset_id": "medmnist",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "bone-fractures",
+      "candidates": [
+        {
+          "dataset_id": "rsnafracture",
+          "match": "task_relevant_check_labels"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "osteoarthritis",
+      "candidates": [
+        {
+          "dataset_id": "medmnist",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "rheumatoid-arthritis",
+      "candidates": [
+        {
+          "dataset_id": "medmnist",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "appendicitis",
+      "candidates": [
+        {
+          "dataset_id": "medmnist",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    },
+    {
+      "disease": "carotid-stenosis",
+      "candidates": [
+        {
+          "dataset_id": "ultra",
+          "match": "related_or_proxy_not_disease_validated"
+        }
+      ],
+      "status": "EVIDENCE_PENDING"
+    }
+  ]
+}
