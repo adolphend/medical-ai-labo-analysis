@@ -36,3 +36,6 @@ Beyond binary prediction scores, use `scripts/evaluate_context.py` for context-a
 
 ## Skill loading and MedGemma comparator
 Use on-demand skills `dataset-governance`, `model-adapter-testing`, `context-safety`, and `medgemma-benchmark` as applicable. Compare MedGemma 1.5 4B only against task-compatible models with identical patient-level held-out cases, locked prompts and per-task metrics. See evaluation/medgemma-comparison.md. No invented scores or autonomous treatment suggestions.
+
+## MedGemma benchmark for the full registry
+Read `evaluation/medgemma-50-disease-pipeline.md`; execute `scripts/benchmark_50_diseases.py --output evaluation/results/medgemma-50-plan.json` to plan all 50 × 5 tasks. Work through tasks individually using approved DVC-labeled reference data, pinned models, comparable baselines and separate evaluation artifacts. Report not_tested and not_comparable distinctly. Do not report plan generation as inference or claim aggregate superiority.
