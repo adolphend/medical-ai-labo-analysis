@@ -113,6 +113,101 @@ For a concrete **cardiac ultrasound** research task, [EchoNet-Dynamic](https://g
 
 Evaluate any candidate against a non-AI baseline and optionally against [MedGemma](evaluation/medgemma-technical-clinical-analysis.md) *only on compatible tasks with identical independent reference cases*. The disease JSON must identify exactly which components were evaluated and where clinician approval is required.
 
+## Minimum baseline: fork, test, evaluate and integrate **every** model
+
+**This baseline is mandatory for all 41 identified external repositories** (including infrastructure and model frameworks), not merely the first example or MedGemma. The [full upstream manifest](automation/model-forks.json) records recommended `fork`, `dependency` or `review` dispositions. **A dependency classification does not exempt a component from integration testing**; a fork is warranted only when code modification or independent maintenance justifies it. The research objective is to evaluate **all applicable models individually**, then evaluate their compatibility and the full disease pipeline.
+
+### 1. Model intake and forking requirements
+
+For **each** entry in [automation/model-forks.json](automation/model-forks.json):
+
+1. Confirm original GitHub repository/owner, latest usable release, archival/maintenance status, security implications, paper and exact clinical task. Distinguish trained weights, benchmarks, frameworks and infrastructure.
+2. Audit **four independent legal elements**: code license, pretrained checkpoint/license, source dataset rights, and commercial deployment terms. Keep unverified entries blocked.
+3. Determine **fork or dependency**. For an upstream source requiring code changes, create a GitHub fork under the project owner. Otherwise install a pinned dependency or managed service. A public repo is not permission to use every model weight.
+4. Pin upstream commit and checkpoint hash; record architecture, preprocessing, runtime, inputs, outputs, approved evidence and responsible maintainer. Prefer **no-training/CPU-capable small models**; audit target 8 GB VRAM and host memory.
+5. Store source forks as separate GitHub repositories. Use optional Git submodules for source pointers; **never copy all model repositories, datasets or checkpoints into the main Git history**.
+6. Record fork URL and review status in `automation/forks-tracked.json` using the [forking agent](automation/fork_models.py) once executed, and make a reviewed `git add` / `git commit` / `git push`.
+
+[Complete model-specific fork procedures](automation/README.md) · [Fork and upstream sync methods](research/imaging/model-fork-and-evaluation-process.md)
+
+```bash
+# Preflight: read every model's action and requirements
+python3 automation/fork_models.py --all
+
+# Controlled first batch; creates external forks and records them only with --apply
+python3 automation/fork_models.py --models echonet,sononet --apply --push
+
+# Explicitly attempt all 41, INCLUDING items normally better pinned as dependencies;
+# review licenses and suitability individually BEFORE doing this:
+# python3 automation/fork_models.py --all --apply --push
+```
+
+**No external fork has been executed or verified by this ChatGPT work.** The agent requires authenticated GitHub CLI, a clean synchronized `main` worktree and correct origin. An attempted partial batch may need recovery and GitHub rate limits or repository naming conflicts may arise.
+
+### 2. Per-model qualification — individually, without skipping
+
+Every model or software component must have a distinct **model/tool evaluation card** documenting:
+
+| Gate | Required artifact or evaluation |
+|---|---|
+| Source provenance | Upstream/fork URL, exact Git SHA, original paper DOI, model role, maintenance |
+| Legal usage | Code and weight licenses, data agreement, commercial restrictions |
+| Installation | Python/runtime/OS/GPU/CPU dependencies; reproducible lock and smoke test |
+| Data | Official matching dataset, patient-level split, reference labels, DVC version and hash |
+| Technical correctness | Input format, modality, units, orientation, preprocessing and output schema |
+| Component quality | Task-specific metric (classification, segmentation, detection, regression, context extraction, calibration or operational QC) |
+| Safety & reliability | Wrong-modality rejection, abstention, missing-data handling, false negatives, provenance and error logging |
+| Deployment feasibility | Measured inference time, peak RAM/VRAM and disk use on target hardware |
+| Clinical validity | External-cohort or independent specialist review, subgroup performance and limitations |
+| Status | `not_tested`, `blocked`, `failed`, `research_pass`, or `clinically_validated` (**never infer the last from benchmark accuracy**) |
+
+An infrastructure service is tested for data integrity, privacy, security and handoff correctness, **not** artificial diagnostic sensitivity. An unsuitable or unavailable pretrained checkpoint is marked `MODEL_GAP`, not awarded an invented performance number.
+
+[Evaluation protocol](evaluation/protocol.md) · [Evaluation card](evaluation/evaluation-card-template.md) · [Datasets for 50 diseases](evaluation/disease-dataset-mapping.md) · [DVC](evaluation/README.md)
+
+### 3. Reproducible procedure for evaluating one model
+
+```bash
+# Read model-specific procedures and approved dataset status
+python3 scripts/check_datasets.py
+python3 scripts/check_disease_dataset_catalog.py
+
+# Verify source-code metrics and synthetic pipeline (NO real model scored)
+python3 scripts/run_evaluation_pipeline.py
+python3 -m unittest discover -s tests -p 'test_*.py' -v
+
+# Preview dataset acquisition. Download only after rights + HTTPS + checksum audit
+python3 scripts/download_dataset.py --dataset DATASET_ID
+
+# Evaluate a real model only after compatible model adapter and datasets exist
+# /evaluate-model DISEASE_SLUG MODEL_ID    (inside OpenCode)
+```
+
+**Individual tests:** use dedicated task metrics. Classification: sensitivity/specificity, precision/NPV, calibration; segmentation: Dice/IoU and boundary distances; detection: FROC and false positives per scan; quantitative measurement: MAE, bias; context: fact extraction, omissions and escalations. Document confidence intervals, test prevalence, baseline and failures. The committed Python implementation currently provides **binary and structured-context scorers**, not every specialty metric.
+
+### 4. Multi-model comparison — after individual qualification
+
+- For each disease JSON stage, identify **every relevant candidate** from the registry (e.g., more than one CXR classifier), the deterministic/non-AI baseline and an optional general model such as MedGemma.
+- Use exactly the same *authorized, task-matched* held-out cases and reference standard for like-for-like comparisons; otherwise mark `NOT_COMPARABLE`. Pin prompts, thresholds, weights and preprocessing.
+- Compare model performance, abstention, false-negative risks, resource cost, model size and failure modes. Never combine scores for incompatible tasks (e.g., segmentation Dice with textual F1).
+- Test ensembles/routing only after measuring their **incremental gain and error propagation**, including whether a weak QC model degrades an otherwise strong detection model.
+- Record a separate JSON result for each model × disease × procedure step. A successful component test **does not certify the full workflow**.
+- MedGemma remains an **optional research comparator**, not the baseline requirement or a compulsory component.
+
+[JSON procedure contract](pipeline/README.md) · [Model-by-model integration list](research/imaging/model-integration-registry.md) · [MedGemma comparison](evaluation/medgemma-50-disease-pipeline.md)
+
+### 5. End-to-end test — each of the 50 disease pathways
+
+For a representative, expert-reviewed case, validate: **patient intake → red-flag/missing-context review → screening/diagnostic examination decision (including no imaging) → appropriate acquisition/QC → anatomical localization → disease finding model(s) → uncertainty and specialist report → clinician-controlled guideline evidence → results acknowledgement and follow-up**.
+
+For every step, record `entrypoint`, `depends_on`, `required`, `input_keys`, `output_keys`, model ID/revision, independent dataset, `evaluation.status`, artifact path, abstention policy and human-review requirement in `diseases/<slug>/procedure.json`. The [interpreter](scripts/interpret_procedure.py) currently **plans and validates** steps, but **does not run** arbitrary medical models. Full care-path tests need separate compatible adapters, reviewed data and source-verified guidelines; no automatic treatment selection or prescribing.
+
+### 6. Completion gates and progress ledger
+
+The **minimum project completion bar** is: (a) all 41 upstream entries receive a documented fork/dependency disposition and license audit; (b) each usable model has a runnable smoke test and reproducible *individual* evaluation or explicit reason it cannot be tested; (c) all applicable models for each of the 50 diseases are compared on valid cases; (d) each disease has a reviewed stage-by-stage JSON procedure and end-to-end error-handling test; and (e) everything is referenced by Git/DVC revisions and evaluation reports. **None of these milestones is automatically complete merely because its Markdown description exists.**
+
+**Actual status:** inventory and planning code committed; actual forks, full-dataset downloads, all-model inference, external clinical validation, and 50-disease integrated tests are **not completed**. Published upstream paper scores must never be labeled as local measurements.
+
 ## Dataset control
 
 [Dataset candidates for the 50 conditions](evaluation/disease-dataset-mapping.md) require individual access and label reviews. Data and weights are excluded from Git. [DVC guidance](evaluation/README.md) describes local versioning and protected remotes; never push protected records to public storage. Records of completed tests must include hashes, versioned labels and source documentation.
