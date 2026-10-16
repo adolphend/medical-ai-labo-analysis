@@ -57,3 +57,17 @@ python3 scripts/download_dataset.py --dataset DATASET_ID --apply --dvc-add
 ```
 
 All real sources are **unapproved initially**. Portal URLs cannot be used as `download_url`; some sites require manual registration and cannot be auto-downloaded. Change registry metadata only after reviewing original provider terms. `--dvc-add` requires `dvc init` in the local clone and does not publish dataset bytes. Never commit dataset archives or sensitive metadata. The smoke script tests artificial binary predictions; it does not invoke a pretrained medical model.
+
+## Clinical context analysis (beyond binary accuracy)
+
+[Context evaluator](../scripts/evaluate_context.py) · [Synthetic gold cases](fixtures/context_truth.json) · [Synthetic predictions](fixtures/context_predictions.json) · [Unit tests](../tests/test_context_evaluation.py)
+
+The context evaluation compares structured *patient-history facts*, *missing-information prompts*, *candidate examination categories*, *contraindication flags*, *human-review escalation* and *evidence IDs*. Each dimension has independent precision, recall and F1 (where defined). Additional safety counts are missed human review and unsupported citations. These are **exact-match, research-oriented contract checks**: they do not establish clinical reasoning correctness or treatment appropriateness.
+
+Run:
+```bash
+python3 scripts/evaluate_context.py --truth evaluation/fixtures/context_truth.json --predictions evaluation/fixtures/context_predictions.json --output evaluation/results/context_metrics.json
+python3 scripts/run_evaluation_pipeline.py
+```
+
+All cases are fabricated test fixtures. For actual cases, expert-adjudicated labels, guideline concordance, source validity, context chronology, contraindication handling, clinical harm severity, confidence intervals and external-site validation are needed. Binary image-classification metrics alone cannot certify a disease procedure.
