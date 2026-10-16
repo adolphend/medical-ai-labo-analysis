@@ -22,3 +22,6 @@ Read `models/medgemma-local/INSTALL-CROSS-PLATFORM.md` before preparing the envi
 
 ## End-to-end disease workflow
 Use `evaluation/medgemma-end-to-end-50-diseases.md` and `scripts/medgemma_disease_pipeline.py` for 50 conditions × nine independently assessed steps. Begin with clinical context, continue through required examinations, QC, findings, synthesis, reporting, guideline-based clinician management evidence and follow-up. Don't treat model output as patient-specific treatment or diagnosis. Record not_tested/not_comparable when reference data or modality is unsupported.
+
+## Reproducible public-image case
+Consult `evaluation/cases/pneumonia-medmnist/README.md` and `scripts/medgemma_pneumonia_case.py`. The public data fetch is opt-in, checksum verified, and images/labels are kept out of Git. The model is prompted without the gold labels. Score independent predictions, including abstentions; keep published Google accuracy separate from local measurements.
