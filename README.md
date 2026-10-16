@@ -4,6 +4,25 @@
 
 **Intended future workflow:** clinical intake → indication and examination selection → data acquisition and QC → specialist model-assisted findings and measurements → evidence-linked draft report → clinician-reviewed diagnostic interpretation and management options → documented follow-up. Every clinical decision remains under accountable professional oversight until and unless a separately validated and appropriately authorized tool is established.
 
+## Development status: planning first, implementation later
+
+**The clinical tools have not been developed yet.** This repository is presently a **research, requirements, architecture and agent-planning workspace**. Existing Python scripts, JSON schemas, benchmark examples and installation helpers are exploratory infrastructure/prototypes; they are **not** implemented clinical products or evidence that disease workflows function end to end.
+
+**Future implementation will be generated iteratively using OpenCode agents**, with human review and explicit project decisions before each increment. Agent configurations and skills currently describe intended work; they do not mean that agents have executed the work, created the external model forks, downloaded datasets, trained models, tested hardware, or validated clinical functions.
+
+### Planned agent-led development sequence
+
+1. **Requirements and intended-use definition:** select one clinical tool/disease and define users, patient setting, supported actions, exclusions, safety boundaries and acceptance criteria.
+2. **Architecture and agent plan:** design the model selection/forking agent, source/weight/license audit agent, dataset agent, adapter/implementation agent, model evaluation agent, integration agent, UI agent and quality/safety reviewer. Specify responsibilities, input/output contracts, human approval gates and execution order.
+3. **Research and model selection:** inventory all applicable small/pretrained models, legal terms and exact releases; decide whether each source requires a fork or a pinned dependency.
+4. **Dataset and test design:** find legally usable datasets, expert reference labels, versioning, partitioning, metrics and pass/fail criteria **before** implementing or running model tests.
+5. **Incremental code generation:** direct OpenCode to implement one bounded, testable component at a time; review every generated change, dependency and model checkpoint.
+6. **Independent component evaluation:** test each candidate model on appropriate task-specific data and hardware; record actual performance, failures, abstentions and provenance.
+7. **Clinical workflow integration:** assemble qualified components into one disease-specific tool; test interfaces, audit trail, interoperability and error propagation.
+8. **Later clinical and regulatory work:** plan evidence generation and approvals separately; no direct patient-care deployment without the required validation and authorization.
+
+**Not yet completed:** clinical tool implementation, operational agent orchestration, external model forks, all-model benchmarks, full 50-disease runtime pipelines, clinician validation, and clinical deployment. These are **planned deliverables**, not completed features.
+
 ## Where to start
 
 | Area | Documentation |
@@ -119,7 +138,7 @@ Evaluate any candidate against a non-AI baseline and optionally against [MedGemm
 
 | Stage | Deliverable | Exit requirement |
 |---|---|---|
-| **1. Research (current)** | Disease needs analysis, model inventory/forks, evidence and benchmark datasets, exploratory clinical workflow designs | Document precise intended use, target users/patients, risks, reference standards and repeatable evaluation |
+| **1. Research and planning (current)** | Disease needs analysis, model inventory/forks, evidence and benchmark datasets, exploratory clinical workflow designs | Document precise intended use, target users/patients, risks, reference standards and repeatable evaluation |
 | **2. Engineering prototype** | Runnable end-to-end software with verified model adapters, interfaces, traceable outputs, privacy protections and secure data processing | Integration tests, role separation, logging, error handling, versioned build, reproducible performance |
 | **3. Clinical evaluation** | Locked intended-use system evaluated on representative independent clinical cases with appropriate clinician oversight | Predefined safety/performance endpoints, expert adjudication, bias and site-shift analysis, prospective study if appropriate |
 | **4. Regulatory and quality review** | Jurisdiction-specific classification, risk management, quality system, clinical evidence, security and monitoring documentation | Applicable regulatory and institutional approvals; clearance/certification when legally required |
@@ -261,7 +280,7 @@ Run OpenCode from the repository root. Commands include `/build-disease heart-fa
 ## Project status
 
 - **Documented:** 50 starting clinical conditions and disease folders; candidate open-source projects/datasets; modality research; JSON procedure and evaluation specifications.
-- **Committed prototype code:** dataset download/governance, synthetic scoring, context metrics, per-disease evaluation planning, controlled local MedGemma installation, optional chest X-ray benchmark.
+- **Exploratory helper/prototype code (not clinical product implementation):** dataset download/governance, synthetic scoring, context metrics, per-disease evaluation planning, controlled local MedGemma installation, optional chest X-ray benchmark.
 - **Not established:** end-to-end real-model execution across the 50 diseases, model accuracy on local hardware, dataset suitability across all conditions, clinical/regulatory validation or autonomous treatment safety.
 
 **Evidence standards:** cite actual academic studies and clinical guidelines; separate the paper's result from our locally measured output; expose uncertainty, incomplete coverage and limitations.
