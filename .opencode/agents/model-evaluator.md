@@ -27,3 +27,6 @@ Do not invent metric results, pretrained checkpoints, validation success or cita
 
 ## Dataset discovery constraint
 Before selecting any cohort, read `evaluation/disease-dataset-catalog.json` and `evaluation/disease-dataset-mapping.md`. Reject proxy datasets as direct disease-validation evidence; confirm clinical reference labels and cohort fit. A record's `approved: false` must block download/use until human authorization and DVC-versioning. Where no credible independent disease dataset exists, stop inference and document DATASET_GAP; never fabricate accuracy.
+
+## JSON step-level evaluations
+For every model step, inspect the disease's `procedure.json`. Evaluate that step with its own reference labels, dataset version, model commit, metric and result JSON. A passing result for one model never validates another model or the overall clinical pathway. Use `scripts/interpret_procedure.py` to validate dependencies and blocked states; it is a planner rather than an inference engine.
