@@ -31,3 +31,6 @@ This tool documents options for a credentialed clinician, not patient-specific d
 Every requested disease document has content or a clearly identified evidence gap; validated links to related concern files; the proposed pipeline includes QA and specialist approval; licenses and checkpoints are not guessed; limitations and failed tests remain visible.
 
 Continue through registry only when explicitly asked, one scoped reviewed commit per condition. Do not claim all 50 are researched just because folders exist.
+
+## Canonical JSON procedure
+For each disease, create procedure.json using pipeline/example-procedure.json. Define starting point, dependencies, required steps, input/output keys, model registry references, and an independent evaluation object for every step. Validate with scripts/interpret_procedure.py. No model may be represented as validated based on a different model's test. The interpreter plans only; it does not run clinical inference.
