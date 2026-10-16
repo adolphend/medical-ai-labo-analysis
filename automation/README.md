@@ -68,3 +68,40 @@ Each uses the same verification → fork → pin → CPU smoke-test → adapter 
 ## Important limitations
 
 A public GitHub fork may carry licenses prohibiting commercial use of certain weights, datasets, tasks or derivative materials. Forking is not permission to commercially deploy. Some upstream forks may fail because of GitHub settings, permissions or conflicts. Each execution should be reviewed and errors resolved individually. Check model architecture and checkpoint compatibility, and obtain clinical validation before patient-facing diagnostic/treatment use.
+
+## Complete external inventory (41 repositories)
+
+The [machine-readable manifest](model-forks.json) now covers **all 40 repositories in the diagnostic research catalog plus EchoNet-Dynamic**, which was referenced in the ultrasound research separately. Each entry has a unique ID, upstream source, purpose, modality, and default action. There are **13 fork candidates, 20 prefer-dependency candidates, and 8 require-review candidates**.
+
+**Note:** `--all --apply` explicitly attempts forks of **all 41**, including frameworks normally best used as dependencies, and is **not recommended**. The priority-1 default attempts four forks. You can select an individual model or subset safely with `--models`.
+
+| Default action | IDs | Process |
+|---|---|---|
+| Fork candidate | echonet, sononet, torchxrayvision, chexzero, mriqc, totalsegmentator, medsam, radgraph, chexbert, hovernet, antspynet, cellpose, histoqc | Verify academic paper, licenses, availability of weights and local utility. Fork under `adolphend` only when code modifications are needed; execute smoke test and benchmark. |
+| Pinned dependency | ants, cellprofiler, nnunet, wfdb, ohif, monai, simpleitk, slicer, synthrad-metrics, scispacy, hapi-fhir, medplum, medspacy, neurokit, whisper, opencv, openmrs, pydicom, itksnap, qupath | Check license/security; install from package or exact upstream SHA; register a reproducible adapter. No fork unless customization is required. |
+| Review before fork | medgemma, monai-generative, monai-zoo, openfold, luna16-code, sononet-port, us-metrics, colabfold | Verify paper/maintainer identity, checkpoint/weight rights, architecture compatibility, maintenance, hardware and intended use. Fork only if justified. |
+
+### Entire inventory: preview and optional execution
+
+```bash
+python3 automation/fork_models.py --all            # preview all 41
+python3 automation/fork_models.py --models medsam   # preview one
+# Explicit, potentially large-scale fork operation:
+python3 automation/fork_models.py --all --apply --push
+```
+
+**Do not run the third command without evaluating the license and compute suitability of each project.** GitHub may restrict large batches, duplicate names may conflict, and a partially completed run may require manual recovery. The automation is not a clinical validation tool.
+
+### Model-specific acceptance workflow
+
+For **each manifest entry** the work sequence is:
+1. Open `https://github.com/OWNER/REPO`; verify exact origin, branch, active maintenance, license and security status.
+2. Read the linked *peer-reviewed paper* when available, making a note if the paper evidence is pending.
+3. Find exact pretrained model checkpoint (if this is a trained model) and document checksum, data/license, input/output schema.
+4. Measure whether inference works on the available CPU/RAM (and optional GPU) with no training; distinguish unavailable weights from unsupported modality.
+5. Decide: fork to maintain patches; install pinned dependency for unmodified code; or defer.
+6. If forking, use the agent and record fork metadata; optionally create submodule in `external/models/`.
+7. Add a **separate** wrapper/adapter and test in the product codebase. Commit `git add`, `git commit`, `git push` only after reviewing changes.
+8. Document clinically relevant accuracy, domain shift, test set, external validation, failures and clinician review, or explicitly mark **not yet verified**.
+
+**No forks or CPU benchmarks have been executed from ChatGPT.**
