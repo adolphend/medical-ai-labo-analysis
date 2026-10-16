@@ -14,7 +14,12 @@ def main():
     call("scripts/evaluate_predictions.py","--truth","evaluation/fixtures/truth.csv",
          "--predictions","evaluation/fixtures/predictions.csv",
          "--output","evaluation/results/metrics.json")
-    call("scripts/evaluate_context.py","--truth","evaluation/fixtures/context_truth.json",\n         "--predictions","evaluation/fixtures/context_predictions.json",\n         "--output","evaluation/results/context_metrics.json")\n    context=json.loads((ROOT/"evaluation/results/context_metrics.json").read_text())\n    assert context["n_cases"]==2 and context["missed_human_review"]==1\n    metrics=json.loads((ROOT/"evaluation/results/metrics.json").read_text())
+    call("scripts/evaluate_context.py","--truth","evaluation/fixtures/context_truth.json",
+         "--predictions","evaluation/fixtures/context_predictions.json",
+         "--output","evaluation/results/context_metrics.json")
+    context=json.loads((ROOT/"evaluation/results/context_metrics.json").read_text())
+    assert context["n_cases"]==2 and context["missed_human_review"]==1
+    metrics=json.loads((ROOT/"evaluation/results/metrics.json").read_text())
     assert metrics["n_cases"]==6 and metrics["tp"]==2 and metrics["tn"]==2
     print("PASS: binary + context fixture pipeline; NO clinical dataset or real model inference.")
 if __name__=="__main__":main()
