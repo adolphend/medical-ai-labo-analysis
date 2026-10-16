@@ -8,7 +8,8 @@
       "modality": "ultrasound-echocardiography",
       "paper": "https://doi.org/10.1038/s41586-020-2145-8",
       "reason": "LV segmentation and ejection fraction",
-      "priority": 1
+      "priority": 1,
+      "action": "fork"
     },
     {
       "id": "sononet",
@@ -16,7 +17,8 @@
       "modality": "ultrasound-obstetric",
       "paper": "https://doi.org/10.1109/TMI.2017.2712367",
       "reason": "fetal standard-plane recognition",
-      "priority": 1
+      "priority": 1,
+      "action": "fork"
     },
     {
       "id": "torchxrayvision",
@@ -24,7 +26,8 @@
       "modality": "xray",
       "paper": "https://github.com/mlmed/torchxrayvision#citation",
       "reason": "chest radiograph pretrained models",
-      "priority": 1
+      "priority": 1,
+      "action": "fork"
     },
     {
       "id": "chexzero",
@@ -32,7 +35,8 @@
       "modality": "xray",
       "paper": "https://doi.org/10.1038/s41551-022-00936-9",
       "reason": "zero-shot chest observations",
-      "priority": 2
+      "priority": 2,
+      "action": "fork"
     },
     {
       "id": "mriqc",
@@ -40,7 +44,8 @@
       "modality": "mri",
       "paper": "https://doi.org/10.1371/journal.pone.0184661",
       "reason": "MRI quality estimation",
-      "priority": 1
+      "priority": 1,
+      "action": "fork"
     },
     {
       "id": "totalsegmentator",
@@ -48,7 +53,8 @@
       "modality": "ct",
       "paper": "https://doi.org/10.1148/ryai.230024",
       "reason": "CT organ segmentation",
-      "priority": 2
+      "priority": 2,
+      "action": "fork"
     },
     {
       "id": "medsam",
@@ -56,7 +62,8 @@
       "modality": "multi-modality",
       "paper": "https://doi.org/10.1038/s41467-024-44824-z",
       "reason": "prompted medical segmentation",
-      "priority": 2
+      "priority": 2,
+      "action": "fork"
     },
     {
       "id": "radgraph",
@@ -64,7 +71,8 @@
       "modality": "clinical-reports",
       "paper": "https://arxiv.org/abs/2106.14463",
       "reason": "extract report entities and relationships",
-      "priority": 2
+      "priority": 2,
+      "action": "fork"
     },
     {
       "id": "chexbert",
@@ -72,7 +80,8 @@
       "modality": "clinical-reports",
       "paper": "https://aclanthology.org/2020.emnlp-main.117/",
       "reason": "chest report labeling",
-      "priority": 2
+      "priority": 2,
+      "action": "fork"
     },
     {
       "id": "hovernet",
@@ -80,7 +89,288 @@
       "modality": "pathology",
       "paper": "https://doi.org/10.1016/j.media.2019.101563",
       "reason": "nuclei segmentation and classification",
-      "priority": 2
+      "priority": 2,
+      "action": "fork"
+    },
+    {
+      "id": "ants",
+      "upstream": "ANTsX/ANTs",
+      "modality": "mri",
+      "reason": "registration",
+      "priority": 3,
+      "action": "dependency",
+      "paper": "PENDING_PEER_REVIEW_VERIFICATION"
+    },
+    {
+      "id": "antspynet",
+      "upstream": "ANTsX/ANTsPyNet",
+      "modality": "mri",
+      "reason": "brain segmentation",
+      "priority": 3,
+      "action": "fork",
+      "paper": "PENDING_PEER_REVIEW_VERIFICATION"
+    },
+    {
+      "id": "cellprofiler",
+      "upstream": "CellProfiler/CellProfiler",
+      "modality": "microscopy",
+      "reason": "cell profiling",
+      "priority": 3,
+      "action": "dependency",
+      "paper": "PENDING_PEER_REVIEW_VERIFICATION"
+    },
+    {
+      "id": "medgemma",
+      "upstream": "Google-Health/medgemma",
+      "modality": "medical-vlm",
+      "reason": "medical language and vision; check restricted weights",
+      "priority": 3,
+      "action": "review",
+      "paper": "PENDING_PEER_REVIEW_VERIFICATION"
+    },
+    {
+      "id": "nnunet",
+      "upstream": "MIC-DKFZ/nnUNet",
+      "modality": "multi-modal",
+      "reason": "segmentation framework",
+      "priority": 3,
+      "action": "dependency",
+      "paper": "PENDING_PEER_REVIEW_VERIFICATION"
+    },
+    {
+      "id": "wfdb",
+      "upstream": "MIT-LCP/wfdb-python",
+      "modality": "ecg",
+      "reason": "signals reader",
+      "priority": 3,
+      "action": "dependency",
+      "paper": "PENDING_PEER_REVIEW_VERIFICATION"
+    },
+    {
+      "id": "cellpose",
+      "upstream": "MouseLand/cellpose",
+      "modality": "microscopy",
+      "reason": "cell segmentation",
+      "priority": 3,
+      "action": "fork",
+      "paper": "PENDING_PEER_REVIEW_VERIFICATION"
+    },
+    {
+      "id": "ohif",
+      "upstream": "OHIF/Viewers",
+      "modality": "dicom",
+      "reason": "medical image viewer",
+      "priority": 3,
+      "action": "dependency",
+      "paper": "PENDING_PEER_REVIEW_VERIFICATION"
+    },
+    {
+      "id": "monai-generative",
+      "upstream": "Project-MONAI/GenerativeModels",
+      "modality": "synthesis",
+      "reason": "generative imaging research",
+      "priority": 3,
+      "action": "review",
+      "paper": "PENDING_PEER_REVIEW_VERIFICATION"
+    },
+    {
+      "id": "monai",
+      "upstream": "Project-MONAI/MONAI",
+      "modality": "multi-modal",
+      "reason": "medical AI framework",
+      "priority": 3,
+      "action": "dependency",
+      "paper": "PENDING_PEER_REVIEW_VERIFICATION"
+    },
+    {
+      "id": "monai-zoo",
+      "upstream": "Project-MONAI/model-zoo",
+      "modality": "multi-modal",
+      "reason": "pretrained medical models bundle registry",
+      "priority": 3,
+      "action": "review",
+      "paper": "PENDING_PEER_REVIEW_VERIFICATION"
+    },
+    {
+      "id": "simpleitk",
+      "upstream": "SimpleITK/SimpleITK",
+      "modality": "multi-modal",
+      "reason": "image processing",
+      "priority": 3,
+      "action": "dependency",
+      "paper": "PENDING_PEER_REVIEW_VERIFICATION"
+    },
+    {
+      "id": "slicer",
+      "upstream": "Slicer/Slicer",
+      "modality": "multi-modal",
+      "reason": "medical imaging workbench",
+      "priority": 3,
+      "action": "dependency",
+      "paper": "PENDING_PEER_REVIEW_VERIFICATION"
+    },
+    {
+      "id": "synthrad-metrics",
+      "upstream": "SynthRAD2023/metrics",
+      "modality": "synthesis",
+      "reason": "synthetic CT evaluation metrics",
+      "priority": 3,
+      "action": "dependency",
+      "paper": "PENDING_PEER_REVIEW_VERIFICATION"
+    },
+    {
+      "id": "scispacy",
+      "upstream": "allenai/scispacy",
+      "modality": "clinical-text",
+      "reason": "biomedical NLP",
+      "priority": 3,
+      "action": "dependency",
+      "paper": "PENDING_PEER_REVIEW_VERIFICATION"
+    },
+    {
+      "id": "openfold",
+      "upstream": "aqlaboratory/openfold",
+      "modality": "molecular",
+      "reason": "protein structure prediction heavy inference",
+      "priority": 3,
+      "action": "review",
+      "paper": "PENDING_PEER_REVIEW_VERIFICATION"
+    },
+    {
+      "id": "histoqc",
+      "upstream": "choosehappy/HistoQC",
+      "modality": "pathology",
+      "reason": "slide quality",
+      "priority": 3,
+      "action": "fork",
+      "paper": "PENDING_PEER_REVIEW_VERIFICATION"
+    },
+    {
+      "id": "hapi-fhir",
+      "upstream": "hapifhir/hapi-fhir",
+      "modality": "interoperability",
+      "reason": "FHIR server",
+      "priority": 3,
+      "action": "dependency",
+      "paper": "PENDING_PEER_REVIEW_VERIFICATION"
+    },
+    {
+      "id": "medplum",
+      "upstream": "medplum/medplum",
+      "modality": "interoperability",
+      "reason": "FHIR healthcare software",
+      "priority": 3,
+      "action": "dependency",
+      "paper": "PENDING_PEER_REVIEW_VERIFICATION"
+    },
+    {
+      "id": "medspacy",
+      "upstream": "medspacy/medspacy",
+      "modality": "clinical-text",
+      "reason": "clinical NLP",
+      "priority": 3,
+      "action": "dependency",
+      "paper": "PENDING_PEER_REVIEW_VERIFICATION"
+    },
+    {
+      "id": "luna16-code",
+      "upstream": "nauyan/Luna16",
+      "modality": "ct",
+      "reason": "lung nodules research implementation; provenance check",
+      "priority": 3,
+      "action": "review",
+      "paper": "PENDING_PEER_REVIEW_VERIFICATION"
+    },
+    {
+      "id": "neurokit",
+      "upstream": "neuropsychology/NeuroKit",
+      "modality": "ecg",
+      "reason": "biosignal processing",
+      "priority": 3,
+      "action": "dependency",
+      "paper": "PENDING_PEER_REVIEW_VERIFICATION"
+    },
+    {
+      "id": "whisper",
+      "upstream": "openai/whisper",
+      "modality": "clinical-text",
+      "reason": "speech recognition",
+      "priority": 3,
+      "action": "dependency",
+      "paper": "PENDING_PEER_REVIEW_VERIFICATION"
+    },
+    {
+      "id": "opencv",
+      "upstream": "opencv/opencv",
+      "modality": "multi-modal",
+      "reason": "image processing",
+      "priority": 3,
+      "action": "dependency",
+      "paper": "PENDING_PEER_REVIEW_VERIFICATION"
+    },
+    {
+      "id": "openmrs",
+      "upstream": "openmrs/openmrs-core",
+      "modality": "ehr",
+      "reason": "electronic records",
+      "priority": 3,
+      "action": "dependency",
+      "paper": "PENDING_PEER_REVIEW_VERIFICATION"
+    },
+    {
+      "id": "pydicom",
+      "upstream": "pydicom/pydicom",
+      "modality": "dicom",
+      "reason": "DICOM processing",
+      "priority": 3,
+      "action": "dependency",
+      "paper": "PENDING_PEER_REVIEW_VERIFICATION"
+    },
+    {
+      "id": "itksnap",
+      "upstream": "pyushkevich/itksnap",
+      "modality": "multi-modal",
+      "reason": "interactive segmentation",
+      "priority": 3,
+      "action": "dependency",
+      "paper": "PENDING_PEER_REVIEW_VERIFICATION"
+    },
+    {
+      "id": "qupath",
+      "upstream": "qupath/qupath",
+      "modality": "pathology",
+      "reason": "pathology workbench",
+      "priority": 3,
+      "action": "dependency",
+      "paper": "PENDING_PEER_REVIEW_VERIFICATION"
+    },
+    {
+      "id": "sononet-port",
+      "upstream": "rdroste/SonoNet_PyTorch",
+      "modality": "ultrasound",
+      "reason": "SonoNet PyTorch port",
+      "priority": 3,
+      "action": "review",
+      "paper": "PENDING_PEER_REVIEW_VERIFICATION"
+    },
+    {
+      "id": "us-metrics",
+      "upstream": "sextant-fable/US-Metrics",
+      "modality": "ultrasound",
+      "reason": "ultrasound image quality; research maturity check",
+      "priority": 3,
+      "action": "review",
+      "paper": "PENDING_PEER_REVIEW_VERIFICATION"
+    },
+    {
+      "id": "colabfold",
+      "upstream": "sokrypton/ColabFold",
+      "modality": "molecular",
+      "reason": "protein prediction pipelines",
+      "priority": 3,
+      "action": "review",
+      "paper": "PENDING_PEER_REVIEW_VERIFICATION"
     }
-  ]
+  ],
+  "policy": "Default: fork only projects requiring code modifications; dependency/review entries are not forked unless explicitly selected after license and academic validation."
 }
