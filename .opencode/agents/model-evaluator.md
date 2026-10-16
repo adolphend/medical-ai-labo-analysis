@@ -33,3 +33,6 @@ For every model step, inspect the disease's `procedure.json`. Evaluate that step
 
 ## Required clinical context validation
 Beyond binary prediction scores, use `scripts/evaluate_context.py` for context-aware structured comparison. Evaluate documented history facts, missing information, contraindications, examination-selection candidates, human review escalation and traceable evidence separately. Never infer that good binary image classification means consultation, clinical decisions or downstream management are correct. Create expert-reviewed reference JSON with appropriate human adjudication for real evaluations; synthetic fixtures only test code.
+
+## Skill loading and MedGemma comparator
+Use on-demand skills `dataset-governance`, `model-adapter-testing`, `context-safety`, and `medgemma-benchmark` as applicable. Compare MedGemma 1.5 4B only against task-compatible models with identical patient-level held-out cases, locked prompts and per-task metrics. See evaluation/medgemma-comparison.md. No invented scores or autonomous treatment suggestions.
