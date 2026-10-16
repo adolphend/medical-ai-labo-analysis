@@ -55,6 +55,13 @@ def main():
             "  - interpretation_reporting\n  - clinician_management_review\n  - follow_up\n"
             "human_approval_required: true\nclinical_deployment_approved: false\n"
             "evidence: pending\n")
+        # Disease-specific declarative JSON: no models activated until independently evaluated.
+        import json
+        template = json.loads((ROOT / "pipeline/example-procedure.json").read_text(encoding="utf-8"))
+        template["disease"] = r["slug"]
+        template["clinical_context"] = r["pathway_type"]
+        template["candidate_examinations"] = r["possible_examinations"].split(";")
+        files["procedure.json"] = json.dumps(template, indent=2) + "\n"
         for filename, content in files.items():
             target = folder / filename
             if target.exists() and not args.force:
