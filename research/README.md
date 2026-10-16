@@ -53,3 +53,7 @@
 ## Imaging-specific patient-to-management pathways
 
 [Imaging modality research index](imaging/README.md) links independent ultrasound, radiography/mammography, CT, MRI, pathology/endoscopy, and multimodal workflows. Each examines patient conversation, indication, acquisition QC, anatomy, disease findings, reporting and human-supervised treatment/follow-up.
+
+## Fifty disease and checkup research pathways
+
+[50-condition registry, OpenCode agent and folder generator](../diseases/README.md) · [Disease registry CSV](../diseases/registry.csv) · [OpenCode agent instructions](../.opencode/agents/medical-disease-architect.md). Disease-specific folders are **scaffolded locally** by running `python3 scripts/scaffold_diseases.py`; they are not yet 50 completed evidence reviews.
