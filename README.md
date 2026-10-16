@@ -94,20 +94,24 @@ These are **research candidates and infrastructure**, not an approved set of cli
 7. **Develop a new model only for a verified gap**: start with a deterministic baseline or pretrained model; consider calibration or parameter-efficient adaptation if permitted; train from scratch only when evidence, labeled data, rights and computing resources justify it. The **8 GB RTX 4060** is the initial development constraint, not an assumed guarantee of training feasibility.
 8. **Release only research outputs with traceability**: write per-step scores/results into [disease procedure JSON](pipeline/README.md) and a model evaluation card. Human specialist verification remains mandatory before any clinical care decision; no autonomous treatment or prescription.
 
-### Example model composition
+### Example composition: lightweight, task-specific components
+
+**Default architecture: no large language model required.** Start with small, task-specific pretrained models, deterministic rules, or manual specialist review. MedGemma is an **optional benchmark comparator**, not a mandatory stage. GPU memory (8 GB VRAM) and CPU-only deployment feasibility must be measured rather than assumed.
 
 ```text
-Patient intake → medSpaCy / MedGemma context analysis
-Clinical indication → clinician-reviewed guideline rules
-Ultrasound quality → SonoNet (fetal planes only) or verified task-specific QC
-Anatomy / measurement → EchoNet-Dynamic (cardiac) or MedSAM prompted masks
-Disease-specific finding → separately validated model or explicit MODEL_GAP
-Reporting → source-linked structured report + MedGemma draft
-Management evidence → versioned guideline retrieval + clinician approval
-Follow-up → FHIR task / result acknowledgement
+Patient intake        → structured form + medSpaCy (rule-based extraction)
+Examination selection → guideline lookup + deterministic eligibility rules + clinician
+Image QC              → metadata/geometry checks; SonoNet for fetal planes only
+Anatomy/measurement   → small task-specific segmentation model or manual measurement
+Finding detection     → a verified small specialist classifier; otherwise MODEL_GAP
+Reporting             → structured templates with linked source observations
+Management evidence   → versioned guideline retrieval and clinician review
+Follow-up             → deterministic task tracking and result acknowledgement
 ```
 
-The example is **not one executable universal chain**: model applicability depends on the clinical question and modality. The disease JSON must list the actual model(s), alternatives, version and **independent evaluation** for each step. The [MedGemma technical analysis](evaluation/medgemma-technical-clinical-analysis.md) is one entry in the broader multi-model research program.
+For a concrete **cardiac ultrasound** research task, [EchoNet-Dynamic](https://github.com/echonet/dynamic) is a candidate for ejection-fraction assessment; for chest radiographs, a selected [TorchXRayVision](https://github.com/mlmed/torchxrayvision) checkpoint is an alternative. Both require actual checkpoint, licensing, accuracy and memory audits before use. **Do not combine unrelated modality models into one disease pipeline.** Use classical image analysis or a smaller approved model when a deep network is unnecessary.
+
+Evaluate any candidate against a non-AI baseline and optionally against [MedGemma](evaluation/medgemma-technical-clinical-analysis.md) *only on compatible tasks with identical independent reference cases*. The disease JSON must identify exactly which components were evaluated and where clinician approval is required.
 
 ## Dataset control
 
