@@ -1,21 +1,51 @@
-MIT License
+Medical AI Laboratory — Research-Only Source License (Custom)
+Version 1.0 — 16 October 2026
 
-Copyright (c) 2026 adolphend
+Copyright (c) 2026 adolphend. All rights reserved except as expressly granted below.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+1. Scope. This license applies only to original material in this repository
+   that the copyright holder has the legal right to license ("Project Material").
+   It does not cover external repositories, third-party code, model weights,
+   datasets, medical records, images, or other materials carrying separate terms.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+2. Limited research permission. The copyright holder grants each recipient a
+   non-exclusive, non-transferable, royalty-free permission to download, study,
+   execute, reproduce, and modify the Project Material solely for internal,
+   non-commercial scientific research, evaluation, and education, subject to
+   all conditions in this license. Modifications may be used internally for
+   those purposes but may not be distributed without prior written permission.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+3. No commercial use. No use is licensed for commercial products or services,
+   paid clinical services, consulting, commercial training, hosted services,
+   commercial model development, resale, sublicensing, or other use primarily
+   intended for commercial advantage. Research carried out for an anticipated
+   commercial application, including by a commercial entity, requires separate
+   written permission from the copyright holder before such use.
+
+4. No redistribution or deployment. Except as permitted by applicable law or
+   GitHub's mandatory platform terms, recipients may not republish, distribute,
+   sublicense, sell, or publicly host modified or unmodified copies, or deploy
+   the Project Material as a clinical or production service, without separate
+   written authorization from the copyright holder.
+
+5. Attribution and notices. Permitted internal copies and modifications must
+   retain this copyright notice and license text. Do not represent modified
+   material as an official or clinically validated version of this project.
+
+6. Clinical restrictions. The Project Material is provided for research and
+   planning only. It is not validated for diagnosis, triage, treatment selection,
+   prescription, or independent patient care. No permission for patient-facing
+   clinical deployment is granted by this license.
+
+7. Ownership and additional permissions. All rights not expressly granted are
+   reserved. Requests for commercial or redistributive rights require a separate
+   written agreement with the copyright holder. This license does not grant
+   rights to the project's names, logos, or trademarks.
+
+8. Disclaimer. TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE PROJECT MATERIAL IS
+   PROVIDED "AS IS" WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED.
+   THE COPYRIGHT HOLDER DISCLAIMS LIABILITY TO THE EXTENT PERMITTED BY LAW.
+
+This is a custom source-available research license, NOT an OSI-approved
+open-source license. Nothing in these terms overrides rights that cannot
+lawfully be restricted, or separate rights granted by earlier licenses.
