@@ -54,3 +54,7 @@ python3 scripts/benchmark_50_diseases.py --results /path/to/approved-run-results
 ## Operational extension
 
 The OpenCode agent selects a disease, prepares approved cases and exact source models, runs independently implemented inference adapters, validates JSON output, measures clinical and model-specific metrics, and writes an evaluation card. Any diagnosis, examination order or treatment must remain under qualified clinician control. Add each adapter and its tests before attempting production evaluation.
+
+## Local 8GB GPU execution setup
+
+[MedGemma 1.5 4B 4-bit local setup](../models/medgemma-local/README.md) · [Gated download code](../models/medgemma-local/download.py) · [4-bit synthetic smoke test](../models/medgemma-local/infer.py). The smoke test measures local memory and latency but not clinical accuracy; real structured-case adapters and approved datasets remain required. No downloaded weights are committed.
