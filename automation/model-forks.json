@@ -1,0 +1,86 @@
+{
+  "owner": "adolphend",
+  "destination": "adolphend/medical-ai-labo-analysis",
+  "models": [
+    {
+      "id": "echonet",
+      "upstream": "echonet/dynamic",
+      "modality": "ultrasound-echocardiography",
+      "paper": "https://doi.org/10.1038/s41586-020-2145-8",
+      "reason": "LV segmentation and ejection fraction",
+      "priority": 1
+    },
+    {
+      "id": "sononet",
+      "upstream": "baumgach/SonoNet-weights",
+      "modality": "ultrasound-obstetric",
+      "paper": "https://doi.org/10.1109/TMI.2017.2712367",
+      "reason": "fetal standard-plane recognition",
+      "priority": 1
+    },
+    {
+      "id": "torchxrayvision",
+      "upstream": "mlmed/torchxrayvision",
+      "modality": "xray",
+      "paper": "https://github.com/mlmed/torchxrayvision#citation",
+      "reason": "chest radiograph pretrained models",
+      "priority": 1
+    },
+    {
+      "id": "chexzero",
+      "upstream": "rajpurkarlab/CheXzero",
+      "modality": "xray",
+      "paper": "https://doi.org/10.1038/s41551-022-00936-9",
+      "reason": "zero-shot chest observations",
+      "priority": 2
+    },
+    {
+      "id": "mriqc",
+      "upstream": "nipreps/mriqc",
+      "modality": "mri",
+      "paper": "https://doi.org/10.1371/journal.pone.0184661",
+      "reason": "MRI quality estimation",
+      "priority": 1
+    },
+    {
+      "id": "totalsegmentator",
+      "upstream": "wasserth/TotalSegmentator",
+      "modality": "ct",
+      "paper": "https://doi.org/10.1148/ryai.230024",
+      "reason": "CT organ segmentation",
+      "priority": 2
+    },
+    {
+      "id": "medsam",
+      "upstream": "bowang-lab/MedSAM",
+      "modality": "multi-modality",
+      "paper": "https://doi.org/10.1038/s41467-024-44824-z",
+      "reason": "prompted medical segmentation",
+      "priority": 2
+    },
+    {
+      "id": "radgraph",
+      "upstream": "Stanford-AIMI/radgraph",
+      "modality": "clinical-reports",
+      "paper": "https://arxiv.org/abs/2106.14463",
+      "reason": "extract report entities and relationships",
+      "priority": 2
+    },
+    {
+      "id": "chexbert",
+      "upstream": "stanfordmlgroup/CheXbert",
+      "modality": "clinical-reports",
+      "paper": "https://aclanthology.org/2020.emnlp-main.117/",
+      "reason": "chest report labeling",
+      "priority": 2
+    },
+    {
+      "id": "hovernet",
+      "upstream": "vqdang/hover_net",
+      "modality": "pathology",
+      "paper": "https://doi.org/10.1016/j.media.2019.101563",
+      "reason": "nuclei segmentation and classification",
+      "priority": 2
+    }
+  ]
+}
